@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "personal-assistant-web-application-django"
+version = "0.1.0"
+description = ""
+authors = ["kirienkovitaliy <kirienkovitaliy1989@gmail.com>"]
+readme = "README.md"
+packages = [{include = "personal_assistant_web_application_django"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
