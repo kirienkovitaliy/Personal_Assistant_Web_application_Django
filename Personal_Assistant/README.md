@@ -1,6 +1,6 @@
 # Personal Assistant Web Application
 
-![imgonline-com-ua-Resize-uSo5u154KYZgS.jpg](..%2F..%2F..%2F..%2F..%2FDownloads%2Fimgonline-com-ua-Resize-uSo5u154KYZgS.jpg)
+![imgonline-com-ua-Resize-uSo5u154KYZgS.jpg](..%2F..%2F..%2Fimgonline-com-ua-Resize-uSo5u154KYZgS.jpg)
 
 Personal Assistant is a web application built on Django that provides users with a centralized platform to manage
 contacts, notes, cloud storage, and daily news summaries. The application incorporates authentication mechanisms to
