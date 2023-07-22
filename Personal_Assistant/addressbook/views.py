@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from .models import Contact
 from .forms import ContactForm
@@ -6,6 +7,12 @@ from .forms import ContactForm
 
 def index(request):
     return render(request, 'addressbook/index.html')
+
+
+class ContactsHome(ListView):
+    model = Contact
+    template_name = 'addressbook/index.html'
+
 
 def create_contact(request):
     if request.method == 'POST':

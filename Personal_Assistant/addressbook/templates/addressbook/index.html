@@ -3,10 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>Main page</title>
+    <!--<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
+    <style>
+        .horizontal-list {
+            display: inline;
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .horizontal-list li {
+            display:inline;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h1>You are in mane page</h1>
+<main class="container">
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+            <li><a href="{% url 'add_contact' %}" role="button">Add contact</a></li>
+        </ul>
+    </nav>
+    <h1>Main page</h1>
+    <div style="display: flex;">
+        <ul class="list-articles">
+            {% for i in object_list %}
+            <li>
+            <figure style="border-left: .25rem solid;">
+            <div style="margin-left: 20px;">
+                <H3>{{ i.name }}</H3>
+                <p>{{ i.phone_number }}</p>
+                <p>{{ i.email }}</p>
+                <p>{{ i.address }}</p>
+                <p>{{ i.birthday }}</p>
+            </div>
+            </figure>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
+</main>
 </body>
 </html>
