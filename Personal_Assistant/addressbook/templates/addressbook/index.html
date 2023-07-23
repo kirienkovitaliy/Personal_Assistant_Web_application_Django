@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Main page</title>
-    <!--<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
     <style>
         .horizontal-list {
             display: inline;
@@ -27,10 +27,10 @@
     <h1>Main page</h1>
 
     <form>
-        <div class="input-group">
-            <input>
-            <button></button>
-            <a></a>
+        <div class="input-group mb-3">
+            <input name="q" type="text" class="form-control input-sm" placeholder="Search for..." value="{{ request.GET.q }}">
+            <button class="btn btn-secondary" title="Search"><i class="fas fa-search"></i></button>
+            <a href="{% url 'home' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh"><i class="fas fa-sync-alt"></i></a>
         </div>
     </form>
 

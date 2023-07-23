@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -15,7 +16,15 @@ class ContactsHome(ListView):
     template_name = 'addressbook/index.html'
     
     def get_queryset(self) -> QuerySet[Any]:
-        return Contact.objects.all()
+        q = self.request.GET.get('q')
+        if q:
+            object_list = self.model.objects.filter(
+                Q(name__icontains=q) | Q(email__icontains=q) | Q(phone_number__icontains=q) |
+                Q(address__icontains=q) | Q(birthday__icontains=q)
+            )
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 
 class AddContact(CreateView):
