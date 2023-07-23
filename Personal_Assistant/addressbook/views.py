@@ -1,19 +1,28 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
 
 from .models import Contact
 from .forms import ContactForm
 # Create your views here.
 
-def index(request):
-    return render(request, 'addressbook/index.html')
-
 
 class ContactsHome(ListView):
     model = Contact
     template_name = 'addressbook/index.html'
+    
+    def get_queryset(self) -> QuerySet[Any]:
+        return Contact.objects.all()
 
 
+class AddContact(CreateView):
+    form_class = ContactForm
+    template_name = 'addressbook/add_contact.html'
+    
+    
+    
 def create_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
