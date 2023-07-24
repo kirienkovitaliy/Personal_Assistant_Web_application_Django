@@ -52,17 +52,3 @@ class DeleteContact(DeleteView):
         self.object.delete()
         return HttpResponse(status=204)
         
-    
-def create_contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = ContactForm()
-    context = {
-        'form': form,
-        'title': 'Add new contact'
-    }
-    return render(request, 'addressbook/add_contact.html', context=context)
