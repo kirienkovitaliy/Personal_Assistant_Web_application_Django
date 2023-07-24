@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "gdstorage",
+    "file_app",
 ]
 
 MIDDLEWARE = [
@@ -82,7 +84,6 @@ DATABASES = {
         'USER': env('DATABASE_USER'),
         'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
     }
 }
 
@@ -136,3 +137,9 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.googledrive.GoogleDriveStorage'
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = BASE_DIR / "high-extension-393414-ef235c86bf65.json"
+MEDIA_ROOT = ""
+MEDIA_URL = 'https://drive.google.com/file/d/'

@@ -12,6 +12,7 @@ django = "^4.2.3"
 pymongo = "^4.4.1"
 django-environ = "^0.10.0"
 psycopg2-binary = "^2.9.6"
+django-googledrive-storage = "^1.6.0"
 
 
 [build-system]
