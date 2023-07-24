@@ -1,0 +1,250 @@
+/* Добавляем стили для валют и фона страницы */
+body {
+  background-image: url("fone.jpg"); /* Замените на путь к вашему фоновому рисунку */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; /* Добавляем эту строку для центрирования фоновой картинки */
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Устанавливаем высоту body на 100% окна просмотра */
+  position: relative;
+}
+
+.currency-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  /*font-family: cursive;*/
+  color: white;
+}
+
+.container {
+  position: absolute;
+  bottom: 2cm; /* Отступ от нижнего края */
+  left: 50%;
+  transform: translateX(-50%); /* Центрирование по горизонтали */
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex; /* Изменено на flex, чтобы кнопки были в ряд */
+}
+
+.login-btn, .signup-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: white; /* Белый фон кнопок */
+  color: #111112; /* Измените на нужный цвет текста кнопок */
+  border: none;
+  border-radius: 15px; /* Закругленные углы */
+  cursor: pointer;
+}
+
+/* Добавляем стили для кнопки Sign Up */
+button.btn-primary {
+  padding: 10px 20px;
+  background-color: white; /* Белый фон кнопки */
+  color: #111112; /* Черный цвет текста кнопки */
+  border: none;
+  border-radius: 15px; /* Закругленные углы */
+  cursor: pointer;
+}
+
+/* Добавляем стили для названия полей */
+.form-label {
+  color: white; /* Белый цвет текста названия полей */
+  font-weight: bold; /* Жирный шрифт для названия полей */
+}
+
+/* Стили для названия полей */
+.form-label {
+  color: white; /* Белый цвет текста названия полей */
+  font-weight: bold; /* Жирный шрифт для названия полей */
+}
+button {
+ --color: #560bad;
+ font-family: inherit;
+ display: flex;
+ justify-content: center; /* Выравнивание по горизонтали */
+ align-items: center;
+ width: 8em;
+ height: 2.6em;
+ line-height: 2.5em;
+ margin: 20px;
+ position: relative;
+ overflow: hidden;
+ border: 2px solid var(--color);
+ transition: color .5s;
+ z-index: 1;
+ font-size: 17px;
+ border-radius: 6px;
+ font-weight: bold;
+ color: var(--color);
+}
+
+button:before {
+ content: "";
+ position: absolute;
+ z-index: -1;
+ background: var(--color);
+ height: 150px;
+ width: 200px;
+ border-radius: 50%;
+}
+
+button:hover {
+ color: #fff;
+}
+
+button:before {
+ top: 100%;
+ left: 100%;
+ transition: all .7s;
+}
+
+button:hover:before {
+ top: -30px;
+ left: -30px;
+}
+
+button:active:before {
+ background: #3a0ca3;
+ transition: background 0s;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  /*position: relative;*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  font-size: 28px;
+  color: royalblue;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: royalblue;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: royalblue;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message, .signin {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: royalblue;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(56, 90, 194);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
