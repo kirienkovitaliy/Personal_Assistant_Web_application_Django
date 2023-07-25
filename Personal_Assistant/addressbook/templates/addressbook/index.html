@@ -1,77 +1,184 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Main page</title>
-    <!--<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
-    <style>
-        .horizontal-list {
-            display: inline;
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .horizontal-list li {
-            display:inline;
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
-<main class="container">
-    <!--Add contact button-->
-    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
-        <ul>
-            <li><a href="{% url 'add_contact' %}" role="button">Add contact</a></li>
-        </ul>
-    </nav>
-    <h1>Main page</h1>
+{% extends "app/base.html" %}
 
-    <form>
-        <!--Search field-->
-        <div class="input-group mb-3">
-            <input name="q" type="text" class="form-control input-sm" placeholder="Search for..." value="{{ request.GET.q }}">
-            <button class="btn btn-secondary" title="Search" style="margin-left: 2px;">Search</button>
-            <a href="{% url 'home' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh">Reset</a>
+{% block content %}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #333;
+    }
+
+    main {
+        text-align: center;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(194, 14, 14, 0.23);
+        width: 90%;
+        max-width: 1100px;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    .search button[type="submit"] {
+        background-color: #555;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left: 10px;
+        transition: .9s ease;
+    }
+
+    .search button[type="submit"]:hover {
+        transform: scale(1.1);
+        background-color: #444;
+    }
+
+    .input-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .input-group input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        flex: 1;
+        max-width: 300px;
+    }
+
+    .input-group button[type="submit"],
+    .input-group button[type="reset"] {
+        background-color: #555;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left: 10px;
+        transition: .9s ease;
+    }
+
+    .input-group button[type="submit"]:hover,
+    .input-group button[type="reset"]:hover {
+        transform: scale(1.1);
+        background-color: #444;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .card {
+        width: 230px;
+        height: 350px;
+        background: #555;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .card span {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .card .job {
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    .card button {
+        padding: 8px 25px;
+        border-radius: 8px;
+        border: none;
+        margin-top: 13px;
+        background: #444;
+        color: #9d9999;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+    }
+
+    .card button:hover {
+        background: #333;
+    }
+ .add-contact-btn button {
+        margin: 15px auto;
+
+    }
+    .add-contact-btn {
+        margin-top: 20px;
+    }
+    .signup-btn {
+
+  background-color: #888080; /* Белый фон кнопок */}
+</style>
+<main>
+    <nav>
+        <div class="add-contact-btn">
+            <a href="{% url 'addressbook:add_contact' %}">
+                <button class="signup-btn">Add contact</button>
+            </a>
         </div>
-        <!--Checkbox to get only users with birthay on next week-->
-        <label for="birthday-on-next-week">Birthday on next week only:</label>
-        <input type="checkbox" name="birthday_on_next_week" id="birthday-on-next-week">
-        <button type="submit">Submit</button>
-    </form>
+    </nav>
+    <h1 style="color: #020202;">Address Book</h1>
+    <form class="input-group">
 
-    <!--List of contacts-->
-    <div style="display: flex;">
-        <ul class="list-articles">
-            {% for i in object_list %}
-            <li>
-            <figure style="border-left: .25rem solid;">
-            <div style="margin-left: 20px;">
-                <H3>{{ i.name }}</H3>
-                <p>{{ i.phone_number }}</p>
-                <p>{{ i.email }}</p>
-                <p>{{ i.address }}</p>
-                <p>{{ i.birthday }}</p>
+    <label for="birthday-on-next-week" style="color: #171616; font-size: larger">Birthday on next week only:</label>
+        <input type="checkbox" name="birthday_on_next_week" id="birthday-on-next-week" style="margin: 10px">
+        <button class="btn btn-secondary btn-sm" type="submit" style="margin: 10px">Submit</button>
+    </form>
+    <form class="input-group">
+        <input name="q" type="text" class="form-control" id="inputText" placeholder="Search for..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+        <button type="reset"><a href="{% url 'addressbook:home' %}">Reset</a></button>
+    </form>
+    <div class="cards-container">
+        {% for i in object_list %}
+            <div class="card">
+                <div class="card-border-top"></div>
+                <span>{{ i.name }}</span>
+                <p class="job">{{ i.phone_number }}</p>
+                <p class="job">{{ i.email }}</p>
+                <p class="job">{{ i.address }}</p>
+                <p class="job">{{ i.birthday }}</p>
+                <button><a href="{% url 'addressbook:edit_contact' i.pk %}" role="button">Edit</a></button>
+                <button><a href="#" onclick="deleteObject('{{ i.pk }}')" role="button">Delete</a></button>
             </div>
-            <a href="{% url 'edit_contact' i.pk %}" role="button">Edit</a>
-            <a href="#" onclick="deleteObject('{{ i.pk }}')" role="button">Delete</a>
-            </figure>
-            </li>
-            {% endfor %}
-        </ul>
+        {% endfor %}
     </div>
     <script>
         function deleteObject(pk) {
             if (confirm('Are you sure you want to delete this object?')) {
-                // Perform deletion by making a POST request
                 fetch(`/addressbook/delete/${pk}`, {
                     method: 'POST',
                     headers: { 'X-CSRFToken': '{{ csrf_token }}' }
                 })
                 .then(response => {
-                    // Check if deletion was successful (status code 204)
                     if (response.status === 204) {
-                        // Refresh the page to update the object list
                         location.reload();
                     } else {
                         alert('Failed to delete the object.');
@@ -86,19 +193,14 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
-        // Handle the checkbox change event
-        $('#birthday-on-next-week').change(function() {
-        const isChecked = $(this).prop('checked');
-        // Save the checkbox status to the local storage
-        localStorage.setItem('birthday_on_next_week', isChecked);
+        $(document).ready(function() {
+            $('#birthday-on-next-week').change(function() {
+                const isChecked = $(this).prop('checked');
+                localStorage.setItem('birthday_on_next_week', isChecked);
+            });
+            const isChecked = localStorage.getItem('birthday_on_next_week') === 'true';
+            $('#birthday-on-next-week').prop('checked', isChecked);
         });
-
-        // Get the checkbox status from the local storage and set the checkbox accordingly
-        const isChecked = localStorage.getItem('birthday_on_next_week') === 'true';
-        $('#birthday-on-next-week').prop('checked', isChecked);
-    });
     </script>
 </main>
-</body>
-</html>
+{% endblock %}
