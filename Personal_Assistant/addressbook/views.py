@@ -20,12 +20,21 @@ class ContactsHome(LoginRequiredMixin, ListView):
     template_name = 'addressbook/index.html'
     
     def get_queryset(self) -> QuerySet[Any]:
+        
+        object_list_prefetch = self.model.objects.filter(user=self.request.user)
         if self.request.GET.get('birthday_on_next_week') == 'on':
             print(f'birthday trigger')
-
-            object_list_prefetch = self.model.objects.filter(user=self.request.user)
-        else:
-            object_list_prefetch = self.model.objects.filter(user=self.request.user)
+            triggered_pk = []
+            for obj in object_list_prefetch:
+                start_date = now().date()
+                end_date = start_date + timedelta(days=7)
+                if not obj.birthday:
+                    continue
+                birthday = obj.birthday.replace(year=start_date.year)
+                if start_date <= birthday < end_date:
+                    triggered_pk.append(obj.pk)
+            
+            object_list_prefetch = object_list_prefetch.filter(pk__in=triggered_pk)
             
         q = self.request.GET.get('q')
         if q:
