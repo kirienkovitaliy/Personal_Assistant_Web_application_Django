@@ -119,15 +119,15 @@ button:active:before {
   flex-direction: column;
   gap: 10px;
   max-width: 350px;
-  background-color: #fff;
+  background-color: lightgrey;
   padding: 20px;
   border-radius: 20px;
-  /*position: relative;*/
   position: absolute;
-  top: 50%;
+  top: 50px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
+
 
 .title {
   font-size: 28px;
@@ -225,7 +225,7 @@ button:active:before {
 .submit {
   border: none;
   outline: none;
-  background-color: royalblue;
+  background-color: black;
   padding: 10px;
   border-radius: 10px;
   color: #fff;
@@ -234,7 +234,7 @@ button:active:before {
 }
 
 .submit:hover {
-  background-color: rgb(56, 90, 194);
+  background-color: rgb(79, 190, 194);
 }
 
 @keyframes pulse {
@@ -248,3 +248,9 @@ button:active:before {
     opacity: 0;
   }
 }
+
+
+
+
+
+

@@ -16,7 +16,7 @@ def update_filename(instance, filename):
 # Create your models here.
 class Picture(models.Model):
     description = models.CharField(max_length=150)
-    path = models.ImageField(upload_to=update_filename)
+    path = models.FileField(upload_to=update_filename)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     def __str__(self):

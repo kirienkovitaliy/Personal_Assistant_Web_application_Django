@@ -10,8 +10,7 @@ from .models import Picture
 
 # Create your views here.
 def main(request):
-    return render(request, 'app/index.html',
-                  context={"title": "Web 11 Group"})
+    return render(request, 'app/index.html')
 
 
 @login_required
@@ -24,15 +23,17 @@ def upload(request):
             pic.user = request.user
             pic.save()
             return redirect(to="app:pictures")
+        print("not valid")
     return render(request, 'app/upload.html',
-                  context={"title": "Web 11 Group", "form": form})
+                  context={"title": "Personal_Assistant_Web_application_Django", "form": form})
 
 
 @login_required
 def pictures(request):
     pictures = Picture.objects.filter(user=request.user).all()
+    print(pictures)
     return render(request, 'app/pictures.html',
-                  context={"title": "Web 11 Group", "pictures": pictures,
+                  context={"title": "Personal_Assistant_Web_application_Django", "pictures": pictures,
                            "media": settings.MEDIA_URL})
 
 
@@ -56,6 +57,6 @@ def edit(request, pic_id):
 
     picture = Picture.objects.filter(pk=pic_id, user=request.user).first()
     return render(request, "app/edit.html",
-                  context={"title": "Web 11 Group", "pic": picture,
+                  context={"title": "Personal_Assistant_Web_application_Django", "pic": picture,
                            "media": settings.MEDIA_URL})
 
