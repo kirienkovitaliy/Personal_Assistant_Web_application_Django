@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
-    "app"
-    'addressbook.apps.AddressbookConfig'
+    "app",
+    'addressbook.apps.AddressbookConfig',
 ]
 
 MIDDLEWARE = [
