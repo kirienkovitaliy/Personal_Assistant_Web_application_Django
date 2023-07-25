@@ -1,0 +1,17 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<h1 style="color: white;">Upload file</h1>
+<form action="{% url 'app:edit' pic.id %}" method="post">
+    {% csrf_token %}
+    <img src="{{media}}{{pic.path}}" width="500" height="350" alt="pic">
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" value="{{pic.description}}"
+               name="description" style="width: 500px;">
+    </div>
+
+    <button class="signup-btn">Submit</button>
+</form>
+{% endblock %}

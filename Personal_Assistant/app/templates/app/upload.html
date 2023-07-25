@@ -1,0 +1,35 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<style>
+    .form-label {
+        width: 100px;
+        display: inline-block;
+    }
+
+    .form-field {
+        width: 500px;
+        display: inline-block;
+    }
+</style>
+
+<h1 style="color: white;">Upload files</h1>
+<form action="{% url 'app:upload' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <div class="form-field">
+            {{ form.description }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Files</label>
+        <div class="form-field">
+            {{ form.path }}
+        </div>
+    </div>
+    <button class="signup-btn">Upload</button>
+</form>
+{% endblock %}
+
+
