@@ -1,52 +1,42 @@
-{% extends "users/base.html" %}
-
-
+{% extends "app/base.html" %}
 {% block content %}
-<h1>Sign Up</h1>
-<form method="post">
+<form class="form" method="post">
     {% csrf_token %}
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">Username</label>
-            {{form.username}}
+    <p class="title">Register </p>
+    <link rel="stylesheet" href="/static/styles.css">
+    <p class="message">Signup now and get full access to our app. </p>
+    <div>
+        <div class="flex">
+            <label class="form-label">{{form.username}}</label>
+            <label>{{form.first_name}}</label>
+            <label>{{form.last_name}}</label>
         </div>
         <span>{{form.errors.username}}</span>
-    </div>
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">First Name</label>
-            {{form.first_name}}
-        </div>
         <span>{{form.errors.first_name}}</span>
-    </div>
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">Last Name</label>
-            {{form.last_name}}
-        </div>
         <span>{{form.errors.last_name}}</span>
     </div>
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            {{form.email}}
+    <div>
+        <div>
+            <label class="form-label">{{form.email}}</label>
         </div>
         <span>{{form.errors.email}}</span>
     </div>
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">Password</label>
-            {{form.password1}}
+
+    <div>
+        <div>
+            <label class="form-label">{{form.password1}}</label>
         </div>
         <span>{{form.errors.password1}}</span>
     </div>
-    <div class="form-row">
-        <div class="mb-3">
-            <label class="form-label">Confirm password</label>
-            {{form.password2}}
+
+    <div>
+        <div>
+            <label class="form-label">{{form.password2}}</label>
         </div>
         <span>{{form.errors.password2}}</span>
     </div>
-    <button type="submit" class="btn btn-primary">Sing Up</button>
+
+    <button class="submit">Sign Up</button>
+    <p class="signin">Already have an account ? <a href="{% url 'users:login' %}">Sign In</a></p>
 </form>
 {% endblock %}
