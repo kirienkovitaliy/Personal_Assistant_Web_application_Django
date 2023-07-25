@@ -15,6 +15,7 @@ from .models import Contact
 from .forms import ContactForm
 # Create your views here.
 
+
 class ContactsHome(LoginRequiredMixin, ListView):
     model = Contact
     template_name = 'addressbook/index.html'
@@ -50,11 +51,12 @@ class ContactsHome(LoginRequiredMixin, ListView):
 class AddContact(LoginRequiredMixin, CreateView):
     form_class = ContactForm
     template_name = 'addressbook/contact_form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('addressbook:home')
     
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.user = self.request.user
         return super().form_valid(form)
+
 
 class EditContact(LoginRequiredMixin, UpdateView):
     model = Contact
