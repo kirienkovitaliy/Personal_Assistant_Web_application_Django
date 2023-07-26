@@ -1,6 +1,8 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+
+
 <style>
     body {
         display: flex;
@@ -87,13 +89,33 @@
         overflow-y: auto;
     }
 
+    .card .button-container {
+        display: block;
+        justify-content: center;
+    }
+
+    .card .button-container button {
+        width: 150px; /* Ширина кнопки */
+        height: 25px;
+        margin: 0 auto 20px; /* Для центрирования кнопок по горизонтали */
+        padding: 8px 25px;
+        border-radius: 8px;
+        border: none;
+        background: #cec7c7;
+        color: #050505;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+
+    }
+
     .card {
         width: 230px;
         height: 350px;
-        background: #555;
+        background: #78757e;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        color: #fff;
+        color: #ffffff;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -108,6 +130,28 @@
     .card .job {
         font-weight: 400;
         font-size: 12px;
+        word-wrap: break-word; /* Разрывать слова, если текст не помещается */
+        max-height: 100px;
+
+    }
+
+    /* Стилизация скроллбара для браузеров на основе Chromium (Chrome, Edge и др.) */
+    .card .scrollable::-webkit-scrollbar {
+        width: 3px; /* Толщина скроллбара */
+    }
+
+     .card .scrollable::-webkit-scrollbar-track {
+        background-color: transparent; /* Цвет фона скроллбара */
+    }
+
+    .card .scrollable::-webkit-scrollbar-thumb {
+        background-color: #888787; /* Цвет полосы скроллбара */
+        border-radius: 10px; /* Скругление углов полосы */
+    }
+
+    .card .scrollable {
+        scrollbar-width: thin;
+        overflow: auto;
     }
 
     .card button {
@@ -115,8 +159,8 @@
         border-radius: 8px;
         border: none;
         margin-top: 13px;
-        background: #444;
-        color: #9d9999;
+        background: #cec7c7;
+        color: #050505;
         font-weight: 600;
         cursor: pointer;
         transition: .3s ease;
@@ -125,22 +169,50 @@
     .card button:hover {
         background: #333;
     }
- .add-contact-btn button {
+    .add-contact-btn button {
         margin: 15px auto;
 
     }
     .add-contact-btn {
         margin-top: 20px;
     }
+
+    .add-home-btn button {
+        margin: 15px auto;
+        position: absolute;
+        top: 8%;
+        right: 7%;
+
+    }
     .signup-btn {
 
-  background-color: #888080; /* Белый фон кнопок */}
+        background-color: #797979; /* Белый фон кнопок */}
+
+
+    .home-btn button {
+        background-color: #888787; /* Серый цвет фона кнопки */
+        color: #050505; /* Черный цвет текста */
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+    }
+
+    .home-btn button:hover {
+        background-color: #444444; /* Темно-серый цвет фона при наведении */
+    }
+
 </style>
 <main>
     <nav>
         <div class="add-contact-btn">
+            <a href="/">
+                <button class="signup-btn">Home</button>
+            </a>
             <a href="{% url 'addressbook:add_contact' %}">
-                <button class="signup-btn">Add contact</button>
+                <button class="signup-btn">Add +</button>
             </a>
         </div>
     </nav>
@@ -149,24 +221,42 @@
 
     <label for="birthday-on-next-week" style="color: #171616; font-size: larger">Birthday on next week only:</label>
         <input type="checkbox" name="birthday_on_next_week" id="birthday-on-next-week" style="margin: 10px">
-        <button class="btn btn-secondary btn-sm" type="submit" style="margin: 10px">Submit</button>
+        <button class="btn btn-secondary btn-sm" type="submit" style="margin: 10px; width: auto">Ok</button>
     </form>
     <form class="input-group">
         <input name="q" type="text" class="form-control" id="inputText" placeholder="Search for..." value="{{ request.GET.q }}">
         <button type="submit">Search</button>
-        <button type="reset"><a href="{% url 'addressbook:home' %}">Reset</a></button>
+        <a href="{% url 'addressbook:home' %}"><button type="reset">Reset</button></a>
     </form>
     <div class="cards-container">
         {% for i in object_list %}
             <div class="card">
                 <div class="card-border-top"></div>
-                <span>{{ i.name }}</span>
-                <p class="job">{{ i.phone_number }}</p>
-                <p class="job">{{ i.email }}</p>
-                <p class="job">{{ i.address }}</p>
-                <p class="job">{{ i.birthday }}</p>
-                <button><a href="{% url 'addressbook:edit_contact' i.pk %}" role="button">Edit</a></button>
-                <button><a href="#" onclick="deleteObject('{{ i.pk }}')" role="button">Delete</a></button>
+                <span style="font-size: 20px;">{{ i.name }}</span>
+                {% if i.phone_number %}
+                <p class="job" style="font-size: 15px;">{{ i.phone_number}}</p>
+                {% else %}
+                <p style="font-size: 15px;">Phone number is missing</p>
+                {% endif %}
+                {% if i.email %}
+                <p class="job" style="font-size: 15px;">{{ i.email }}</p>
+                {% else %}
+                <p>Email is missing</p>
+                {% endif %}
+                {% if i.address %}
+                <p class="job" style="font-size: 15px;">{{ i.address }}</p>
+                {% else %}
+                <p>Address is missing</p>
+                {% endif %}
+                {% if i.birthday %}
+                <p class="job" style="font-size: 15px;">{{ i.birthday }}</p>
+                {% else %}
+                <p>Birthday is not specified</p>
+                {% endif %}
+                <div class="button-container">
+                    <a href="{% url 'addressbook:edit_contact' i.pk %}" role="button"> <button>Edit</button></a>
+                    <a href="#" onclick="deleteObject('{{ i.pk }}')" role="button"><button>Delete</button></a>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -200,6 +290,18 @@
             });
             const isChecked = localStorage.getItem('birthday_on_next_week') === 'true';
             $('#birthday-on-next-week').prop('checked', isChecked);
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const jobElements = document.querySelectorAll(".card .job");
+            jobElements.forEach((element) => {
+                console.log(element.textContent.length);
+                if (element.textContent.length > 24) {
+                    element.classList.add("scrollable");
+                }
+            });
         });
     </script>
 </main>

@@ -19,8 +19,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+from addressbook.views import ContactsHome
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("home", ContactsHome.as_view(), name='home'),
     path("", include("app.urls")),
     path('addressbook/', include('addressbook.urls')),
     path("users/", include("users.urls"))
