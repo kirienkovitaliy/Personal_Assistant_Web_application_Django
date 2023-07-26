@@ -11,7 +11,7 @@ class Tag(models.Model):
             models.UniqueConstraint(fields=['name', 'user'], name='user tags')
         ]
 
-class Note(models.Mpdel):
+class Note(models.Model):
     head = models.CharField(max_length=255)
     body = models.TextField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='notes')

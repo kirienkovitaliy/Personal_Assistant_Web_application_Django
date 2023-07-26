@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "users",
     "app",
     'addressbook.apps.AddressbookConfig',
+    'notebook.apps.NotebookConfig'
 ]
 
 MIDDLEWARE = [
