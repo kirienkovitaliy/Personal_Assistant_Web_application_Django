@@ -1,0 +1,50 @@
+{% extends "app/base.html" %}
+
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}
+     role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    {{ form.non_field_errors}}
+</div>
+{% endif %}
+
+<div class="main">
+    <div class="login">
+        <form class="form" method="post">
+            {% csrf_token %}
+            <link rel="stylesheet" href="/static/styles.css">
+            <p class="title">Sign In </p>
+
+            <div>
+                <div>
+                    <label class="form-label">{{form.username}}</label>
+                </div>
+                <span>{{form.errors.username}}</span>
+            </div>
+
+            <div>
+                <div>
+                    <label class="form-label">{{form.password}}</label>
+                </div>
+                <span>{{form.errors.password}}</span>
+            </div>
+            <button class="submit">Sign in</button>
+            <div class="small text-center">-->
+                <a href="{% url 'users:password_reset' %}" class="text-center"><i>Forgot
+                    Password?</i></a>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+    {% endblock %}

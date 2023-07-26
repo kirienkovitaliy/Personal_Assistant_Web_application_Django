@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% block content %}
+<form class="form" method="post">
+    {% csrf_token %}
+    <p class="title">Register </p>
+    <link rel="stylesheet" href="/static/styles.css">
+    <p class="message">Signup now and get full access to our app. </p>
+    <div>
+        <div class="flex">
+            <label class="form-label">{{form.username}}</label>
+            <label>{{form.first_name}}</label>
+            <label>{{form.last_name}}</label>
+        </div>
+        <span>{{form.errors.username}}</span>
+        <span>{{form.errors.first_name}}</span>
+        <span>{{form.errors.last_name}}</span>
+    </div>
+    <div>
+        <div>
+            <label class="form-label">{{form.email}}</label>
+        </div>
+        <span>{{form.errors.email}}</span>
+    </div>
+
+    <div>
+        <div>
+            <label class="form-label">{{form.password1}}</label>
+        </div>
+        <span>{{form.errors.password1}}</span>
+    </div>
+
+    <div>
+        <div>
+            <label class="form-label">{{form.password2}}</label>
+        </div>
+        <span>{{form.errors.password2}}</span>
+    </div>
+
+    <button class="submit">Sign Up</button>
+    <p class="signin">Already have an account ? <a href="{% url 'users:login' %}">Sign In</a></p>
+</form>
+{% endblock %}

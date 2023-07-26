@@ -4,12 +4,11 @@ version = "0.1.0"
 description = ""
 authors = ["kirienkovitaliy <kirienkovitaliy1989@gmail.com>"]
 readme = "README.md"
-packages = [{include = "personal_assistant_web_application_django"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.2.3"
-pymongo = "^4.4.1"
 django-environ = "^0.10.0"
 psycopg2-binary = "^2.9.6"
 django-cloudinary-storage = "^0.3.0"
