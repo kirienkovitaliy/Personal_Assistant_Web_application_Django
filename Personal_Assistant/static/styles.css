@@ -35,7 +35,7 @@ body {
   margin: 10px;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #888080; /* Белый фон кнопок */
+  background-color: #ffffff; /* Белый фон кнопок */
   color: #111112; /* Измените на нужный цвет текста кнопок */
   border: none;
   border-radius: 15px; /* Закругленные углы */
@@ -163,7 +163,7 @@ button:active:before {
 }
 
 .message, .signin {
-  color: rgba(88, 87, 87, 0.822);
+  color: rgba(253, 253, 253, 0.82);
   font-size: 14px;
 }
 
@@ -248,6 +248,9 @@ button:active:before {
     opacity: 0;
   }
 }
+
+
+
 
 
 

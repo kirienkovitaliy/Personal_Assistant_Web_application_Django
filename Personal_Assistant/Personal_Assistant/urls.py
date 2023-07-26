@@ -24,6 +24,7 @@ from addressbook.views import ContactsHome
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("home", ContactsHome.as_view(), name='home'),
+    path("", include("app.urls")),
     path('addressbook/', include('addressbook.urls')),
     path("file/", include("file_app.urls")),
     path("users/", include("users.urls"))
