@@ -1,0 +1,17 @@
+{% extends 'file_app/base.html' %}
+
+{% block content %}
+<div class="w-25 ms-3">
+    {% for file in files %}
+    <ol class="list-group">
+        <li class="list-group-item justify-content-between align-items-start">
+            <div class="">
+                <p class="ms-2 me-auto">{{file.name}}</p>
+                <a href="{% url 'file_app:download' file.id %}" class="btn btn-light">Download</a>
+                <a href="{% url 'file_app:delete' file.id %}" class="btn btn-light">Delete</a>
+            </div>
+        </li>
+    </ol>
+    {% endfor %}
+</div>
+{% endblock %}
