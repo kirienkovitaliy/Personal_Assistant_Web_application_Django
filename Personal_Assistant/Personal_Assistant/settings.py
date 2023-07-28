@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "users",
     "app",
     "addressbook",
+    "news",
     "exchange_rate",
     "statistic_war"
 ]
@@ -162,3 +163,5 @@ CLOUDINARY_STORAGE = {
 MEDIA_ROOT = "/files"
 MEDIA_URL = "/files/"
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+
+GNEWS_API_KEY = env('GNEWS_API_KEY')
