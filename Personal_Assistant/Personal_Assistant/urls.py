@@ -29,7 +29,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('addressbook/', include('addressbook.urls')),
     path("files/", include("file_app.urls")),
-    path("news/", include("news.urls"))
+    path("news/", include("news.urls")),
     path("users/", include("users.urls")),
     path('vtraty_pidariv/', get_spider_data, name='get_spider_data'),
     path("", include("app.urls")),
