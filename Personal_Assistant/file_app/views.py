@@ -10,14 +10,14 @@ from .utils.get_category import get_category
 
 @login_required
 def delete_file(request, id):
-    file = File.objects.get(id=id)
+    file = File.objects.get(id=id, user=request.user)
     file.delete()
     return redirect("file_app:files")
 
 
 @login_required
 def download_file(request, id):
-    file = File.objects.get(id=id)
+    file = File.objects.get(id=id, user=request.user)
     file_url = file.file.url
     response = requests.get(file_url)
 
@@ -35,46 +35,46 @@ def download_file(request, id):
 
 @login_required
 def get_audio_files(request):
-    files = File.objects.filter(category="audio")
+    files = File.objects.filter(category="audio", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def get_documents_files(request):
-    files = File.objects.filter(category="document")
+    files = File.objects.filter(category="document", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def get_files(request):
-    files = File.objects.all()
+    files = File.objects.filter(user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def get_image_files(request):
-    files = File.objects.filter(category="image")
+    files = File.objects.filter(category="image", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def get_other_files(request):
-    files = File.objects.filter(category="other")
+    files = File.objects.filter(category="other", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def get_video_files(request):
-    files = File.objects.filter(category="video")
+    files = File.objects.filter(category="video", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
 def search_files(request):
-    files = File.objects.all()
+    files = File.objects.filter(user=request.user)
     if request.method == "POST":
         keyword = request.POST["keyword"]
-        files = File.objects.filter(name__icontains=keyword)
+        files = File.objects.filter(name__icontains=keyword, user=request.user)
         return render(request, "file_app/files.html", context={"files": files})
     return render(request, "file_app/files.html", context={"files": files})
 

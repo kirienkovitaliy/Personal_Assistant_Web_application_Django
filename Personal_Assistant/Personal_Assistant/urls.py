@@ -19,11 +19,18 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from addressbook.views import ContactsHome
+from exchange_rate import views
+from statistic_war.views import get_spider_data
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("app.urls")),
+    path("home", ContactsHome.as_view(), name='home'),
+    path('', views.home, name='home'),
     path('addressbook/', include('addressbook.urls')),
     path("files/", include("file_app.urls")),
-    path("users/", include("users.urls")),
     path("news/", include("news.urls"))
+    path("users/", include("users.urls")),
+    path('vtraty_pidariv/', get_spider_data, name='get_spider_data'),
+    path("", include("app.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

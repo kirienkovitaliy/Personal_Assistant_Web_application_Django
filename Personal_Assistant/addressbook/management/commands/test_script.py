@@ -5,6 +5,7 @@ from django.utils.timezone import now
 
 from addressbook.models import Contact
 
+
 class Command(BaseCommand):
     help = 'My custom script to work with models'
 
