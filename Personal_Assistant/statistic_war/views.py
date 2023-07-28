@@ -74,3 +74,10 @@ def get_spider_data(request):
     r = spider(urls_for_parser)
     # Вміст шаблону буде доступний як "data" у контексті шаблону
     return render(request, 'statistic_war/stat.html', {'data': r})
+
+
+def get_data():
+    urls_for_parser = get_url()
+    r = spider(urls_for_parser)
+    # Вміст шаблону буде доступний як "data" у контексті шаблону
+    return r

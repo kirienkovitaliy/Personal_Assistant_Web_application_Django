@@ -2,6 +2,9 @@ import requests
 from django.shortcuts import render
 from datetime import date
 
+from statistic_war.views import \
+    get_data
+
 
 def home(request):
     url = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={date.today().strftime("%d.%m.%Y")}'
@@ -17,4 +20,4 @@ def home(request):
             exchange_rates[date.today().strftime("%d.%m.%Y")][currency] = {'sale': float(rate['saleRate']),
                                                                            'purchase': float(rate['purchaseRate'])}
 
-    return render(request, "app/base.html", {"exchange_rates": exchange_rates})
+    return render(request, "app/index.html", {"exchange_rates": exchange_rates, "data": get_data()})
