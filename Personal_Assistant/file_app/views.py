@@ -48,7 +48,6 @@ def get_documents_files(request):
 @login_required
 def get_files(request):
     files = File.objects.all()
-    print(request.headers)
     return render(request, "file_app/files.html", context={"files": files})
 
 
