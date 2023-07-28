@@ -1,0 +1,11 @@
+{% block currency-container %}
+  <ul>
+    {% for date, currencies in exchange_rates.items %}
+      <ul>
+        {% for currency, rate in currencies.items %}
+          <li>{{ currency }}: {{ rate.purchase }} / {{ rate.sale }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </ul>
+{% endblock currency-container %}

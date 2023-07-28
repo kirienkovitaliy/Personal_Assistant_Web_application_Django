@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     "file_app",
     "users",
     "app",
-    "addressbook"
+    "addressbook",
+    "exchange_rate",
+    "statistic_war"
 ]
 
 MIDDLEWARE = [
