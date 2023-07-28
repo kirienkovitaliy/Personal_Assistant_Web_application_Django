@@ -13,6 +13,7 @@ django-environ = "^0.10.0"
 psycopg2-binary = "^2.9.6"
 django-cloudinary-storage = "^0.3.0"
 requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
 
 
 [build-system]

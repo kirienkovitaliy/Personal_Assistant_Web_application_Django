@@ -249,11 +249,16 @@ button:active:before {
   }
 }
 
+.currency-container {
+  list-style-type: none;
+  padding: 0;
+}
 
-
-
-
-
-
-
-
+.currency-container li {
+  margin: 0;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
