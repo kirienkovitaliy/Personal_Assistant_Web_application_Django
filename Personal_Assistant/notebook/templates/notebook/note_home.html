@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Note home</title>
+    <!--Uploading script-->
+    <script src="{% static 'delete_object.js' %}"></script>
+</head>
+<body>
+<main>
+    <nav style="margin-bottom: 20px; border-bottom: 2px sokid; padding-left: 30px;">
+        <ul>
+            <li><a href="{% url 'add_note' %}" role="button">Add note</a></li>
+            <li><a href="{% url 'add_tag' %}" role="button">Add tag</a></li>
+        </ul>
+    </nav>
+    <h1>Note home</h1>
+</main>
+<form>
+    <!--Search field-->
+    <div class="input-group mb-3">
+        <input name="q" type="text" class="form-control input-sm" placeholder="Search for..." value="{{ request.GET.q }}">
+        <button class="btn btn-secondary" title="Search" style="margin-left: 2px;">Search</button>
+        <a href="{% url 'note_home' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh">Reset</a>
+    </div>
+</form>
+<div>
+    {% if selected_tag %}
+    <span>You selected: <b>{{ selected_tag }}</b></span>
+    <a href="{% url 'note_home' %}" role="button">Skip</a>
+    {% endif %}
+</div>
+    <div>
+        <ul>
+            {% for i in object_list %}
+            <li>
+            <figure style="border-left: .25rem solid;">
+            <div style="margin-left: 20px;">
+                <h3>{{ i.title }}</h3>
+                <p>{{ i.content }}</p>
+                <p>{{ i.tags }}</p>
+            </div>
+            <!--Tags-->
+            <div>
+            <uL>
+                {% for tag in i.tags.all %}
+                <li>
+                    <a href="{% url 'note_home' %}?tag={{ tag.name }}">{{ tag.name }}</a>
+                </li>
+            {% endfor %}
+            </uL>
+            </div>
+            <div>
+                <!--About button-->
+                <a href="{% url 'note_detail' i.pk %}" role="button">About</a>
+                <!--Edit button-->
+                <a href="{% url 'edit_note' i.pk %}" role="button">Edit</a>
+                <!--Delete button--><!--Don't touch it. It works-->
+                <a href="#" onclick="deleteObject('{% url 'delete_note' i.pk %}', '{{ csrf_token }}')" role="button">Delete</a>
+            </div>
+            </figure>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

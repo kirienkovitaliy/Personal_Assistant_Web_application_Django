@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Note detail</title>
+</head>
+<body>
+<main>
+    <nav style="margin-bottom: 20px; border-bottom: 2px sokid; padding-left: 30px;">
+        <ul>
+            <li><a href="{% url 'note_home' %}" role="button">Go back</a></li>
+        </ul>
+    </nav>
+</main>
+    <h1>Note detail</h1>
+    <h3>{{ object.title }}</h3>
+    <p>{{ object.content }}</p>
+    <div>
+        <!--Tags-->
+        <uL>
+        {% for tag in object.tags.all %}
+        <li>
+            <span>{{ tag }}</span>
+        </li>
+        {% endfor %}
+        </uL>
+    </div>
+</body>
+</html>

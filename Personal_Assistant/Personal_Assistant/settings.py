@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "file_app",
     "users",
     "app",
+    "addressbook.apps.AddressbookConfig",
+    "notebook.apps.NotebookConfig",
     "addressbook",
     "news",
     "exchange_rate",

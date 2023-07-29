@@ -33,4 +33,5 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("vtraty_pidariv/", get_spider_data, name="get_spider_data"),
     path("", include("app.urls")),
+    path("notebook/", include("notebook.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
