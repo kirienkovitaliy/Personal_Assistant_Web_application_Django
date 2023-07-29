@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 import requests
 
 from .forms import FileForm
@@ -96,4 +96,3 @@ def upload_file(request):
         else:
             return render(request, "file_app/upload_file.html", context={"form": form_class})
     return render(request, "file_app/upload_file.html", context={"form": form_class})
-

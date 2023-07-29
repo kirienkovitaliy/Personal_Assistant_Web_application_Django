@@ -1,7 +1,6 @@
-from django import template
-
 import cloudinary
 from cloudinary.utils import cloudinary_url
+from django import template
 
 register = template.Library()
 

@@ -25,5 +25,3 @@ def get_category(filename: str):
     return "other"
 
 print(get_category("afasf.doc"))
-
-    

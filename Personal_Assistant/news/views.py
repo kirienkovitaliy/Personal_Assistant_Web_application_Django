@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.conf import settings
 import requests
-
-from json import loads
+from django.conf import settings
+from django.shortcuts import render
 
 
 def get_world_news(request):

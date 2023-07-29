@@ -1,5 +1,4 @@
-from django.forms import ModelForm, ImageField, CharField, FileInput, \
-    TextInput, FileField
+from django.forms import ModelForm, CharField, FileInput, TextInput, FileField
 
 from .models import Picture
 

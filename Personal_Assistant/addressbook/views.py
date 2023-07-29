@@ -1,18 +1,19 @@
-from typing import Any
 from datetime import timedelta
+from typing import Any
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.utils.timezone import now
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.timezone import now
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from .models import Contact
 from .forms import ContactForm
+from .models import Contact
+
 # Create your views here.
 
 
@@ -76,4 +77,3 @@ class DeleteContact(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return HttpResponse(status=204)
-        

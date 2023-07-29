@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class File(models.Model):
@@ -12,4 +12,3 @@ class File(models.Model):
     def delete(self):
         self.file.delete()
         super().delete()
-

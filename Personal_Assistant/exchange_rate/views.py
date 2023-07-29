@@ -1,9 +1,9 @@
-import requests
-from django.shortcuts import render
 from datetime import date
 
-from statistic_war.views import \
-    get_data
+from django.shortcuts import render
+import requests
+
+from statistic_war.views import get_data
 
 
 def home(request):

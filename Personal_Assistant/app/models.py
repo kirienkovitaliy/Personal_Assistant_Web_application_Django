@@ -1,9 +1,8 @@
 import os
 from uuid import uuid4
 
-from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
+from django.db import models
 
 
 def update_filename(instance, filename):
@@ -21,4 +20,3 @@ class Picture(models.Model):
 
     def __str__(self):
         return f'{self.user.username}({self.user.email}): {self.path}'
-

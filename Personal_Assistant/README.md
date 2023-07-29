@@ -1,6 +1,6 @@
 # Personal Assistant Web Application
 
-![imgonline-com-ua-Resize-uSo5u154KYZgS.jpg](media%2Fuploads%2Fimgonline-com-ua-Resize-uSo5u154KYZgS.jpg)
+![logo_Readme.jpg](static%2Flogo_Readme.jpg)
 
 https://personal-assistant-vekd.fly.dev/
 

@@ -1,8 +1,8 @@
 import os
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 from .forms import PictureForm
 from .models import Picture
@@ -59,4 +59,3 @@ def edit(request, pic_id):
     return render(request, "app/edit.html",
                   context={"title": "Personal_Assistant_Web_application_Django", "pic": picture,
                            "media": settings.MEDIA_URL})
-

@@ -1,12 +1,11 @@
-from django.http import JsonResponse
-from django.views.decorators.http import require_http_methods
-import re
-import json
 from datetime import datetime
+import re
 
 import requests
 from bs4 import BeautifulSoup
+
 from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
 
 base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
@@ -19,13 +18,12 @@ def get_url():
     prefix = "/month.php?month="
     for tag_a in content:
         urls.append(prefix + re.search(r"\d{4}-\d{2}", tag_a["href"]).group())
-    # Повертаємо тільки останній URL
     return [urls[0]]
 
 
 def spider(urls):
     data = []
-    rows_to_fetch = 1  # Задаємо кількість рядків, яку хочемо вивести
+    rows_to_fetch = 1
 
     for url in urls:
         response = requests.get(base_url + url)
@@ -40,10 +38,8 @@ def spider(urls):
                 print(f"error for {date}")
                 continue
 
-            # Check if the date already exists in data list
             existing_item = next((item for item in data if item["date"] == date), None)
             if existing_item:
-                # If date already exists, update its losses
                 losses = element.find('div').find('div').find('ul')
                 for l in losses:
                     title, quantity, *rest = l.text.split('—')
@@ -51,7 +47,6 @@ def spider(urls):
                     quantity = re.search(r"\d+", quantity).group()
                     existing_item.update({title: quantity})
             else:
-                # If date does not exist, add a new entry to the data list
                 result = {"Дата": date}
                 losses = element.find('div').find('div').find('ul')
                 for l in losses:
@@ -60,8 +55,6 @@ def spider(urls):
                     quantity = re.search(r"\d+", quantity).group()
                     result.update({title: quantity})
                 data.append(result)
-
-            # Зупиняємо збір даних, якщо вже зібрали достатньо рядків
             if len(data) == rows_to_fetch:
                 break
 
@@ -72,12 +65,10 @@ def spider(urls):
 def get_spider_data(request):
     urls_for_parser = get_url()
     r = spider(urls_for_parser)
-    # Вміст шаблону буде доступний як "data" у контексті шаблону
     return render(request, 'statistic_war/stat.html', {'data': r})
 
 
 def get_data():
     urls_for_parser = get_url()
     r = spider(urls_for_parser)
-    # Вміст шаблону буде доступний як "data" у контексті шаблону
     return r
