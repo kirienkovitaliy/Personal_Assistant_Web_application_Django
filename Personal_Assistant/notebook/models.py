@@ -11,6 +11,9 @@ class Tag(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['name', 'user'], name='user tags')
         ]
+    
+    def __str__(self):
+        return f'{self.name}'
 
 class Note(models.Model):
     title = models.CharField(max_length=255)
@@ -19,5 +22,5 @@ class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     
     def get_absolute_url(self):
-        return reverse('note', kwargs={'note_id': self.pk})
+        return reverse('note_detail', kwargs={'pk': self.pk})
     

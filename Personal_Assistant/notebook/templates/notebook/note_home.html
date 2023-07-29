@@ -2,11 +2,66 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Note detail</title>
-</head>
+    <title>Note home</title>
 <body>
-    <h1>Note detail</h1>
-    <h3>{{ object.title }}</h3>
-    <p>{{ object.content }}</p>
+<main>
+    <nav style="margin-bottom: 20px; border-bottom: 2px sokid; padding-left: 30px;">
+        <ul>
+            <li><a href="{% url 'add_note' %}" role="button">Add note</a></li>
+            <li><a href="{% url 'add_tag' %}" role="button">Add tag</a></li>
+        </ul>
+    </nav>
+    <h1>Note home</h1>
+</main>
+    <div>
+        <ul>
+            {% for i in object_list %}
+            <li>
+            <figure style="border-left: .25rem solid;">
+            <div style="margin-left: 20px;">
+                <h3>{{ i.title }}</h3>
+                <p>{{ i.content }}</p>
+                <p>{{ i.tags }}</p>
+            </div>
+            <div>
+            <uL>
+                {% for tag in i.tags.all %}
+                <li>
+                    <span>{{ tag }}</span>
+                </li>
+            {% endfor %}
+            </uL>
+            </div>
+            <a href="{% url 'edit_note' i.pk %}" role="button">Edit</a>
+            <a href="#" onclick="deleteObject('{{ i.pk }}')" role="button">Delete</a>
+            </figure>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        function deleteObject(pk) {
+            if (confirm('Are you sure you want to delete this object?')) {
+                // Perform deletion by making a POST request
+                fetch(`/addressbook/delete/${pk}`, {
+                    method: 'POST',
+                    headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+                })
+                .then(response => {
+                    // Check if deletion was successful (status code 204)
+                    if (response.status === 204) {
+                        // Refresh the page to update the object list
+                        location.reload();
+                    } else {
+                        alert('Failed to delete the object.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error occurred while deleting the object:', error);
+                    alert('An error occurred while deleting the object.');
+                });
+            }
+        }
+    </script>
 </body>
 </html>
