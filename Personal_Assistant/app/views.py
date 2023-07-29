@@ -1,8 +1,8 @@
 import os
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 from .forms import PictureForm
 from .models import Picture
@@ -10,7 +10,7 @@ from .models import Picture
 
 # Create your views here.
 def main(request):
-    return render(request, 'app/index.html')
+    return render(request, "app/index.html")
 
 
 @login_required
@@ -24,7 +24,7 @@ def upload(request):
             pic.save()
             return redirect(to="app:pictures")
         print("not valid")
-    return render(request, 'app/upload.html',
+    return render(request, "app/upload.html",
                   context={"title": "Personal_Assistant_Web_application_Django", "form": form})
 
 
@@ -32,7 +32,7 @@ def upload(request):
 def pictures(request):
     pictures = Picture.objects.filter(user=request.user).all()
     print(pictures)
-    return render(request, 'app/pictures.html',
+    return render(request, "app/pictures.html",
                   context={"title": "Personal_Assistant_Web_application_Django", "pictures": pictures,
                            "media": settings.MEDIA_URL})
 
@@ -50,8 +50,8 @@ def remove(request, pic_id):
 
 @login_required
 def edit(request, pic_id):
-    if request.method == 'POST':
-        description = request.POST.get('description')
+    if request.method == "POST":
+        description = request.POST.get("description")
         Picture.objects.filter(pk=pic_id, user=request.user).update(description=description)
         return redirect(to="app:pictures")
 
@@ -59,4 +59,3 @@ def edit(request, pic_id):
     return render(request, "app/edit.html",
                   context={"title": "Personal_Assistant_Web_application_Django", "pic": picture,
                            "media": settings.MEDIA_URL})
-

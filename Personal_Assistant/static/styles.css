@@ -1,12 +1,11 @@
-/* Добавляем стили для валют и фона страницы */
 body {
-  background-image: url("fone.jpg"); /* Замените на путь к вашему фоновому рисунку */
+  background-image: url("fone.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; /* Добавляем эту строку для центрирования фоновой картинки */
+  background-position: center;
   margin: 0;
   padding: 0;
-  height: 100vh; /* Устанавливаем высоту body на 100% окна просмотра */
+  height: 100vh;
   position: relative;
 }
 
@@ -14,60 +13,56 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  /*font-family: cursive;*/
   color: white;
 }
 
 .container {
   position: absolute;
-  bottom: 2cm; /* Отступ от нижнего края */
+  bottom: 2cm;
   left: 50%;
-  transform: translateX(-50%); /* Центрирование по горизонтали */
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
 }
 
 .buttons {
-  display: flex; /* Изменено на flex, чтобы кнопки были в ряд */
+  display: flex;
 }
 
 .login-btn, .signup-btn {
   margin: 10px;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: white; /* Белый фон кнопок */
-  color: #111112; /* Измените на нужный цвет текста кнопок */
+  background-color: #ffffff;
+  color: #111112;
   border: none;
-  border-radius: 15px; /* Закругленные углы */
+  border-radius: 15px;
   cursor: pointer;
 }
 
-/* Добавляем стили для кнопки Sign Up */
 button.btn-primary {
   padding: 10px 20px;
-  background-color: white; /* Белый фон кнопки */
-  color: #111112; /* Черный цвет текста кнопки */
+  background-color: white;
+  color: #111112;
   border: none;
-  border-radius: 15px; /* Закругленные углы */
+  border-radius: 15px;
   cursor: pointer;
 }
 
-/* Добавляем стили для названия полей */
 .form-label {
-  color: white; /* Белый цвет текста названия полей */
-  font-weight: bold; /* Жирный шрифт для названия полей */
+  color: white;
+  font-weight: bold;
 }
 
-/* Стили для названия полей */
 .form-label {
-  color: white; /* Белый цвет текста названия полей */
-  font-weight: bold; /* Жирный шрифт для названия полей */
+  color: white;
+  font-weight: bold;
 }
 button {
  --color: #560bad;
  font-family: inherit;
  display: flex;
- justify-content: center; /* Выравнивание по горизонтали */
+ justify-content: center;
  align-items: center;
  width: 8em;
  height: 2.6em;
@@ -128,7 +123,6 @@ button:active:before {
   transform: translateX(-50%);
 }
 
-
 .title {
   font-size: 28px;
   color: royalblue;
@@ -163,7 +157,7 @@ button:active:before {
 }
 
 .message, .signin {
-  color: rgba(88, 87, 87, 0.822);
+  color: rgba(253, 253, 253, 0.82);
   font-size: 14px;
 }
 
@@ -249,8 +243,16 @@ button:active:before {
   }
 }
 
+.currency-container {
+  list-style-type: none;
+  padding: 0;
+}
 
-
-
-
-
+.currency-container li {
+  margin: 0;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}

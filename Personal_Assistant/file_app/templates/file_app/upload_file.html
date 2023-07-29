@@ -1,0 +1,70 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .centered-container {
+              text-align: center;
+              position: absolute;
+              color: white;
+              top: 5%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              padding: 20px;
+            }
+        .upload-btn {
+            background-color: #6c757d;
+            color: white;
+            border-color: #6c757d;
+            float: right;
+            margin-top: 0px;
+            height: 41px;
+        }
+        .upload-form {
+            width: 50%;
+            margin-top: 10px;
+        }
+        .upload-form .form-control {
+            height: 41px;
+        }
+        .container {
+            position: absolute;
+            bottom: 19cm;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+        }
+        .signup-btn {
+            margin-top: 755px;
+        }
+    </style>
+    <head>
+        <title>Center Text</title>
+    </head>
+    <div class="centered-container">
+        <h1>Select and upload your files</h1>
+    </div>
+    <body>
+        <a href="{% url 'file_app:files' %}"><button class="signup-btn">Files</button></a>
+        <a href="/"><button class="signup-btn">Home</button></a>
+        <div class="container mt-3">
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                {% csrf_token %}
+                <div class="input-group">
+                    {{ form.file }}
+                    <button class="btn upload-btn" type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </body>
+{% endblock %}
