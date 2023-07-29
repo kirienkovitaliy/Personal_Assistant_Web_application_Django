@@ -25,6 +25,12 @@
         <a href="{% url 'note_home' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh">Reset</a>
     </div>
 </form>
+<div>
+    {% if selected_tag %}
+    <span>You selected: <b>{{ selected_tag }}</b></span>
+    <a href="{% url 'note_home' %}" role="button">Skip</a>
+    {% endif %}
+</div>
     <div>
         <ul>
             {% for i in object_list %}

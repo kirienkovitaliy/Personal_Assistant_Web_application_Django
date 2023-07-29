@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,7 +30,15 @@ class NoteHome(LoginRequiredMixin, ListView):
         else:
             object_list = object_list_prefetch
         return object_list
-    
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        selected_tag = self.request.GET.get('tag')
+        if selected_tag:
+            context['selected_tag'] = selected_tag
+
+        return context
+
 
 class ShowNote(LoginRequiredMixin, DetailView):
     model = Note

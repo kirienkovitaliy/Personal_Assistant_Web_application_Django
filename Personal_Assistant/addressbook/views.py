@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 from datetime import timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
