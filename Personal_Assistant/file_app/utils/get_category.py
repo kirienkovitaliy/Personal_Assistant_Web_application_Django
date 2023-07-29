@@ -12,7 +12,7 @@ DOCUMENT_EXT =("pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "csv",
 
 
 def get_category(filename: str):
-    ext = filename.rsplit('.')[-1]
+    ext = filename.rsplit(".")[-1]
 
     if ext in IMAGE_EXT:
         return "image"

@@ -9,4 +9,4 @@ class PictureForm(ModelForm):
 
     class Meta:
         model = Picture
-        fields = ['description', 'path']
+        fields = ["description", "path"]

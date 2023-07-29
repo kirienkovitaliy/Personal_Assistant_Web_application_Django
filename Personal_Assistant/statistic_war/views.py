@@ -12,8 +12,8 @@ base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
 def get_url():
     response = requests.get(base_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    content = soup.select('div[class=ajaxmonth] h4[class=normal] a')
+    soup = BeautifulSoup(response.text, "html.parser")
+    content = soup.select("div[class=ajaxmonth] h4[class=normal] a")
     urls = ["/"]
     prefix = "/month.php?month="
     for tag_a in content:
@@ -27,11 +27,11 @@ def spider(urls):
 
     for url in urls:
         response = requests.get(base_url + url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        content = soup.select('ul[class=see-also] li[class=gold]')
+        soup = BeautifulSoup(response.text, "html.parser")
+        content = soup.select("ul[class=see-also] li[class=gold]")
 
         for element in content:
-            date = element.find('span', attrs={"class": "black"}).text
+            date = element.find("span", attrs={"class": "black"}).text
             try:
                 date = datetime.strptime(date, "%d.%m.%Y").strftime("%d.%m.%Y")
             except ValueError:
@@ -40,17 +40,17 @@ def spider(urls):
 
             existing_item = next((item for item in data if item["date"] == date), None)
             if existing_item:
-                losses = element.find('div').find('div').find('ul')
-                for l in losses:
-                    title, quantity, *rest = l.text.split('—')
+                losses = element.find("div").find("div").find("ul")
+                for loss in losses:
+                    title, quantity, *rest = loss.text.split("—")
                     title = title.strip()
                     quantity = re.search(r"\d+", quantity).group()
                     existing_item.update({title: quantity})
             else:
                 result = {"Дата": date}
-                losses = element.find('div').find('div').find('ul')
-                for l in losses:
-                    title, quantity, *rest = l.text.split('—')
+                losses = element.find("div").find("div").find("ul")
+                for loss in losses:
+                    title, quantity, *rest = loss.text.split("—")
                     title = title.strip()
                     quantity = re.search(r"\d+", quantity).group()
                     result.update({title: quantity})
@@ -64,11 +64,11 @@ def spider(urls):
 @require_http_methods(["GET"])
 def get_spider_data(request):
     urls_for_parser = get_url()
-    r = spider(urls_for_parser)
-    return render(request, 'statistic_war/stat.html', {'data': r})
+    result = spider(urls_for_parser)
+    return render(request, "statistic_war/statistic_war.html", {"data": result})
 
 
 def get_data():
     urls_for_parser = get_url()
-    r = spider(urls_for_parser)
-    return r
+    result = spider(urls_for_parser)
+    return result

@@ -19,13 +19,13 @@ from .models import Contact
 
 class ContactsHome(LoginRequiredMixin, ListView):
     model = Contact
-    template_name = 'addressbook/index.html'
+    template_name = "addressbook/index.html"
     
     def get_queryset(self) -> QuerySet[Any]:
         
         object_list_prefetch = self.model.objects.filter(user=self.request.user)
-        if self.request.GET.get('birthday_on_next_week') == 'on':
-            print(f'birthday trigger')
+        if self.request.GET.get("birthday_on_next_week") == "on":
+            print(f"birthday trigger")
             triggered_pk = []
             for obj in object_list_prefetch:
                 start_date = now().date()
@@ -38,7 +38,7 @@ class ContactsHome(LoginRequiredMixin, ListView):
             
             object_list_prefetch = object_list_prefetch.filter(pk__in=triggered_pk)
             
-        q = self.request.GET.get('q')
+        q = self.request.GET.get("q")
         if q:
             object_list = object_list_prefetch.filter(
                 Q(name__icontains=q) | Q(email__icontains=q) | Q(phone_number__icontains=q) |
@@ -51,8 +51,8 @@ class ContactsHome(LoginRequiredMixin, ListView):
 
 class AddContact(LoginRequiredMixin, CreateView):
     form_class = ContactForm
-    template_name = 'addressbook/contact_form.html'
-    success_url = reverse_lazy('addressbook:home')
+    template_name = "addressbook/contact_form.html"
+    success_url = reverse_lazy("addressbook:home")
     
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.user = self.request.user
@@ -62,11 +62,11 @@ class AddContact(LoginRequiredMixin, CreateView):
 class EditContact(LoginRequiredMixin, UpdateView):
     model = Contact
     form_class = ContactForm
-    template_name = 'addressbook/contact_form.html'
-    success_url = reverse_lazy('home')
+    template_name = "addressbook/contact_form.html"
+    success_url = reverse_lazy("home")
 
     def get_object(self):
-        pk = self.kwargs.get('pk')
+        pk = self.kwargs.get("pk")
         return get_object_or_404(Contact, id=pk)
     
 
