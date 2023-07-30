@@ -22,13 +22,14 @@ def download_file(request, id):
     response = requests.get(file_url)
 
     if response.status_code == 200:
-
         file_content = response.content
-        response = HttpResponse(file_content, 
-                                headers={
-                                    "content_type": "application/octet-stream",
-                                    "Content-Disposition": f"attachment; filename={file.name}"
-                                    })
+        response = HttpResponse(
+            file_content,
+            headers={
+                "content_type": "application/octet-stream",
+                "Content-Disposition": f"attachment; filename={file.name}",
+            },
+        )
         return response
     return HttpResponse("Something was wrong")
 
@@ -85,7 +86,7 @@ def upload_file(request):
 
     if request.method == "POST":
         form = form_class(request.POST, request.FILES)
-        
+
         if form.is_valid():
             file = form.save(commit=False)
             file.user = request.user
@@ -94,5 +95,7 @@ def upload_file(request):
             file.save()
             return redirect("file_app:files")
         else:
-            return render(request, "file_app/upload_file.html", context={"form": form_class})
+            return render(
+                request, "file_app/upload_file.html", context={"form": form_class}
+            )
     return render(request, "file_app/upload_file.html", context={"form": form_class})

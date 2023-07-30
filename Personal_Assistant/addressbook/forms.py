@@ -7,15 +7,14 @@ from .models import Contact
 
 
 class ContactForm(forms.ModelForm):
-
     class Meta:
         model = Contact
         fields = ["name", "email", "phone_number", "address", "birthday"]
         widgets = {
             "address": forms.TextInput(attrs={"class": "form-input"}),
-            "birthday": forms.DateInput(attrs={"type": "date"})
+            "birthday": forms.DateInput(attrs={"type": "date"}),
         }
-    
+
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get("phone_number")
         if phone_number:

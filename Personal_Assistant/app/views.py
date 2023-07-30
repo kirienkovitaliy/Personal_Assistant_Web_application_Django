@@ -24,17 +24,26 @@ def upload(request):
             pic.save()
             return redirect(to="app:pictures")
         print("not valid")
-    return render(request, "app/upload.html",
-                  context={"title": "Personal_Assistant_Web_application_Django", "form": form})
+    return render(
+        request,
+        "app/upload.html",
+        context={"title": "Personal_Assistant_Web_application_Django", "form": form},
+    )
 
 
 @login_required
 def pictures(request):
     pictures = Picture.objects.filter(user=request.user).all()
     print(pictures)
-    return render(request, "app/pictures.html",
-                  context={"title": "Personal_Assistant_Web_application_Django", "pictures": pictures,
-                           "media": settings.MEDIA_URL})
+    return render(
+        request,
+        "app/pictures.html",
+        context={
+            "title": "Personal_Assistant_Web_application_Django",
+            "pictures": pictures,
+            "media": settings.MEDIA_URL,
+        },
+    )
 
 
 @login_required
@@ -52,10 +61,18 @@ def remove(request, pic_id):
 def edit(request, pic_id):
     if request.method == "POST":
         description = request.POST.get("description")
-        Picture.objects.filter(pk=pic_id, user=request.user).update(description=description)
+        Picture.objects.filter(pk=pic_id, user=request.user).update(
+            description=description
+        )
         return redirect(to="app:pictures")
 
     picture = Picture.objects.filter(pk=pic_id, user=request.user).first()
-    return render(request, "app/edit.html",
-                  context={"title": "Personal_Assistant_Web_application_Django", "pic": picture,
-                           "media": settings.MEDIA_URL})
+    return render(
+        request,
+        "app/edit.html",
+        context={
+            "title": "Personal_Assistant_Web_application_Django",
+            "pic": picture,
+            "media": settings.MEDIA_URL,
+        },
+    )

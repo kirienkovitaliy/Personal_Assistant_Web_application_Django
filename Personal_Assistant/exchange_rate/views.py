@@ -17,7 +17,13 @@ def get_exchange_rates(request):
         if currency in ["USD", "EUR"]:
             if date.today().strftime("%d.%m.%Y") not in exchange_rates:
                 exchange_rates[date.today().strftime("%d.%m.%Y")] = {}
-            exchange_rates[date.today().strftime("%d.%m.%Y")][currency] = {"sale": float(rate["saleRate"]),
-                                                                           "purchase": float(rate["purchaseRate"])}
+            exchange_rates[date.today().strftime("%d.%m.%Y")][currency] = {
+                "sale": float(rate["saleRate"]),
+                "purchase": float(rate["purchaseRate"]),
+            }
 
-    return render(request, "app/index.html", {"exchange_rates": exchange_rates, "data": get_data()})
+    return render(
+        request,
+        "app/index.html",
+        {"exchange_rates": exchange_rates, "data": get_data()},
+    )

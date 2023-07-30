@@ -1,14 +1,92 @@
-IMAGE_EXT = ("jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif", "webp", "svg", 
-             "jp2", "j2k", "psd", "ico", "heic", "heif", "cr2", "nef", "arw", "dng")
+IMAGE_EXT = (
+    "jpg",
+    "jpeg",
+    "png",
+    "gif",
+    "bmp",
+    "tiff",
+    "tif",
+    "webp",
+    "svg",
+    "jp2",
+    "j2k",
+    "psd",
+    "ico",
+    "heic",
+    "heif",
+    "cr2",
+    "nef",
+    "arw",
+    "dng",
+)
 
-AUDIO_EXT = ("mp3", "wav", "flac", "aac", "ogg", "aiff", "wma", "m4a", 
-             "ape", "opus", "m4p", "mid", "midi", "amr", "wv", "ac3")
+AUDIO_EXT = (
+    "mp3",
+    "wav",
+    "flac",
+    "aac",
+    "ogg",
+    "aiff",
+    "wma",
+    "m4a",
+    "ape",
+    "opus",
+    "m4p",
+    "mid",
+    "midi",
+    "amr",
+    "wv",
+    "ac3",
+)
 
-VIDEO_EXT = ("mp4", "avi", "mov", "wmv", "flv", "mkv", "webm", "mpeg", "mpg", "3gp",
-             "ts", "m4v", "vob", "rm", "asf", "swf", "ogv", "divx", "xvid", "h264", "x264")
+VIDEO_EXT = (
+    "mp4",
+    "avi",
+    "mov",
+    "wmv",
+    "flv",
+    "mkv",
+    "webm",
+    "mpeg",
+    "mpg",
+    "3gp",
+    "ts",
+    "m4v",
+    "vob",
+    "rm",
+    "asf",
+    "swf",
+    "ogv",
+    "divx",
+    "xvid",
+    "h264",
+    "x264",
+)
 
-DOCUMENT_EXT =("pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "csv", "rtf", "numbers",
-               "odt", "ods", "odp", "html", "xml", "json", "epub", "psd", "ai", "indd", "pages")
+DOCUMENT_EXT = (
+    "pdf",
+    "doc",
+    "docx",
+    "xls",
+    "xlsx",
+    "ppt",
+    "pptx",
+    "txt",
+    "csv",
+    "rtf",
+    "numbers",
+    "odt",
+    "ods",
+    "odp",
+    "html",
+    "xml",
+    "json",
+    "epub",
+    "psd",
+    "ai",
+    "indd",
+    "pages",
+)
 
 
 def get_category(filename: str):
@@ -23,5 +101,6 @@ def get_category(filename: str):
     if ext in DOCUMENT_EXT:
         return "document"
     return "other"
+
 
 print(get_category("afasf.doc"))

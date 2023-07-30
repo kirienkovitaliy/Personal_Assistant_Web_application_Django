@@ -31,10 +31,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*", "https://personal-assistant-vekd.fly.dev"]
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost",
-    "https://personal-assistant-vekd.fly.dev"
-]
+CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://personal-assistant-vekd.fly.dev"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,7 +50,7 @@ INSTALLED_APPS = [
     "addressbook",
     "news",
     "exchange_rate",
-    "statistic_war"
+    "statistic_war",
 ]
 
 MIDDLEWARE = [
@@ -158,7 +155,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": env("CLOUDINARY_NAME"),
     "API_KEY": env("CLOUDINARY_API_KEY"),
-    "API_SECRET": env("CLOUDINARY_API_SECRET")
+    "API_SECRET": env("CLOUDINARY_API_SECRET"),
 }
 
 MEDIA_ROOT = "/files"

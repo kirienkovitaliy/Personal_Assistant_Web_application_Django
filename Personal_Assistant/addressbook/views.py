@@ -20,9 +20,8 @@ from .models import Contact
 class ContactsHome(LoginRequiredMixin, ListView):
     model = Contact
     template_name = "addressbook/index.html"
-    
+
     def get_queryset(self) -> QuerySet[Any]:
-        
         object_list_prefetch = self.model.objects.filter(user=self.request.user)
         if self.request.GET.get("birthday_on_next_week") == "on":
             print(f"birthday trigger")
@@ -35,14 +34,17 @@ class ContactsHome(LoginRequiredMixin, ListView):
                 birthday = obj.birthday.replace(year=start_date.year)
                 if start_date <= birthday < end_date:
                     triggered_pk.append(obj.pk)
-            
+
             object_list_prefetch = object_list_prefetch.filter(pk__in=triggered_pk)
-            
+
         q = self.request.GET.get("q")
         if q:
             object_list = object_list_prefetch.filter(
-                Q(name__icontains=q) | Q(email__icontains=q) | Q(phone_number__icontains=q) |
-                Q(address__icontains=q) | Q(birthday__icontains=q)
+                Q(name__icontains=q)
+                | Q(email__icontains=q)
+                | Q(phone_number__icontains=q)
+                | Q(address__icontains=q)
+                | Q(birthday__icontains=q)
             )
         else:
             object_list = object_list_prefetch
@@ -53,7 +55,7 @@ class AddContact(LoginRequiredMixin, CreateView):
     form_class = ContactForm
     template_name = "addressbook/contact_form.html"
     success_url = reverse_lazy("addressbook:home")
-    
+
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -68,11 +70,11 @@ class EditContact(LoginRequiredMixin, UpdateView):
     def get_object(self):
         pk = self.kwargs.get("pk")
         return get_object_or_404(Contact, id=pk)
-    
+
 
 class DeleteContact(LoginRequiredMixin, DeleteView):
     model = Contact
-    
+
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         self.object = self.get_object()
         self.object.delete()
