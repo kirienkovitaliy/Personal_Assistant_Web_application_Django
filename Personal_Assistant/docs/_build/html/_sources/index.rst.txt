@@ -11,31 +11,31 @@ Welcome to Personal Assistant Web Application's documentation!
    :caption: Contents:
 
 
-app
-========
+App base
+==========
 
 .. automodule:: app.apps
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: app.forms
+.. # automodule:: app.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: app.models
+.. # automodule:: app.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: app.views
+.. # automodule:: app.views
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-addressbook
+Addressbook
 ============
 
 .. # automodule:: addressbook.management.commands.test_script
@@ -58,13 +58,13 @@ addressbook
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: addressbook.views
+.. # automodule:: addressbook.views
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-notebook
+Notebook
 ==========
 
 .. automodule:: notebook.apps
@@ -88,8 +88,8 @@ notebook
    :show-inheritance:
 
 
-file_app
-=========
+App files
+===========
 
 .. automodule:: file_app.templatetags.get_download_url
    :members:
@@ -122,8 +122,8 @@ file_app
    :show-inheritance:
 
 
-statistic_war
-=============
+Statistic war
+===============
 
 .. automodule:: statistic_war.apps
    :members:
@@ -136,8 +136,8 @@ statistic_war
    :show-inheritance:
 
 
-exchange_rate
-=============
+Exchange rate
+===============
 
 .. automodule:: exchange_rate.apps
    :members:
@@ -150,7 +150,7 @@ exchange_rate
    :show-inheritance:
 
 
-news
+News
 ======
 
 .. automodule:: news.apps
@@ -158,14 +158,14 @@ news
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: news.views
+.. # automodule:: news.views
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-users
-================================
+Authorization and authentication
+===================================
 
 .. automodule:: users.apps
    :members:

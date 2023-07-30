@@ -1,5 +1,3 @@
-# app/forms.py
-
 from django.forms import ModelForm, CharField, FileInput, TextInput, FileField
 
 from .models import Picture
