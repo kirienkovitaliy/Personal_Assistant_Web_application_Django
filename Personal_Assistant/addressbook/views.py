@@ -62,7 +62,7 @@ class EditContact(LoginRequiredMixin, UpdateView):
     model = Contact
     form_class = ContactForm
     template_name = 'addressbook/contact_form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('addressbook:home')
 
     def get_object(self):
         pk = self.kwargs.get('pk')

@@ -22,9 +22,9 @@
 
   .card {
     position: absolute;
-    top: 15px;
-    right: -1500px;
-    padding-top: 27px;
+    top: -80px;
+    right: 650px;
+    padding-top: -45px;
     border-radius: 10px;
     transform-style: preserve-3d;
     background-image: radial-gradient(#ece70a 2px, transparent 2px), radial-gradient(#0c307e 2px, transparent 2px);
@@ -35,8 +35,7 @@
     transition: all 0.5s ease-in-out;
   }
 .card:hover {
-  background-position: -110.5px 110.5px, -99px 99px;
-  transform: rotate3d(0.5, 1, 0, 30deg);
+  transform: rotate3d(0.5, 1, 0, 5deg);
 }
 
 .content-box {
@@ -96,56 +95,60 @@
   transform: translate3d(0px, 0px, 50px);
 }
 
-.date-box {
-  position: absolute;
-  top: 30px;
-  left: 25px;
-  height: 60px;
-  width: 60px;
-  background: linear-gradient(45deg, rgb(255, 255, 255) 0%, #d8d8d8 100%);
-  border-left: 2px solid rgb(7, 185, 255);
-  border-radius: 10px;
-  padding: 10px;
-	 /* box-shadow: #00bbff 0px 18px 20px 0px; */
-  transform: translate3d(0px, 0px, 80px);
+table,
+td {
+    border: 2px solid #f1f1f1;
 }
 
-.date-box span {
-  display: block;
-  text-align: center;
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
 }
 
-.date-box .month {
-  color: #052e44;
-  font-size: 11px;
-  font-weight: 700;
-}
+   .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-.date-box .date {
-  font-size: 20px;
-  font-weight: 900;
-  color: rgb(4, 193, 250);
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
 
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
 </style>
-
 {% if user.is_authenticated %}
-<div class="parent">
-    <div class="card">
-        <div class="content-box">
-            <span class="card-title">Втрати підарів</span>
-            <p class="card-content">
-                {% for item in data %}
-            <ul>
-                {% for title, quantity in item.items %}
-                <li>{{ title }}: {{ quantity }}</li>
-                {% endfor %}
-            </ul>
-            </p>
-            <a href="https://index.minfin.com.ua/ua/russian-invading/casualties/" class="see-more">See More</a>
-        </div>
-        {% endfor %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choice news
+    </button>
+    <div class="dropdown-content">
+        <a href="{% url 'news:world_news' %}">World News</a>
+        <a href="{% url 'news:nation_news' %}">Nation News</a>
+        <a href="{% url 'news:business_news' %}">Business News</a>
+        <a href="{% url 'news:technology_news' %}">Technology News</a>
+        <a href="{% url 'news:entertainment_news' %}">Entertainment News</a>
+        <a href="{% url 'news:sports_news' %}">Sports News</a>
+        <a href="{% url 'news:science_news' %}">Science News</a>
+        <a href="{% url 'news:health_news' %}">Health News</a>
     </div>
 </div>
 {% endif %}
@@ -169,10 +172,110 @@
           {% endfor %}
         {% endfor %}
         <span class="currency2">₽: WTF?</span>
+          <table>
+              <thead>
+        <tr>
+            <th colspan="2">Втрати рф:</th>
+        </tr>
+    </thead>
+              <tbody>
+              {% for item in data %}
+                  {{ item.date | date:"d.m.Y" }}
+
+                       {% for title, quantity in item.items %}
+                  <tr>
+                      <td>{{ title }}:</td>
+                      <td>{{ quantity }}</td>
+                  </tr>
+                {% endfor %}
+              {% endfor %}
+              </tbody>
+          </table>
       </div>
       <a href="{% url 'users:login' %}"><button class="login-btn">Login</button></a>
       <a href="{% url 'users:register' %}"><button class="signup-btn">SignUp</button></a>
       {% endif %}
     </div>
  </div>
+<script>
+        const newsForm = document.getElementById('news-form');
+
+        newsForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const selectedCategory = newsForm.category.value;
+            showNews(selectedCategory);
+        });
+
+        function showNews(category) {
+            // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
+            // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
+            // Замените этот код на реальный код для получения новостей с сервера.
+
+            const newsData = {
+                world: [
+                    { title: 'Новость из мира 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость из мира 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                nation: [
+                    { title: 'Новость из страны 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость из страны 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                business: [
+                    { title: 'Новость о бизнесе 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость о бизнесе 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                technology: [
+                    { title: 'Новость о технологиях 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость о технологиях 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                entertainment: [
+                    { title: 'Новость из мира развлечений 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость из мира развлечений 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                sports: [
+                    { title: 'Новость о спорте 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость о спорте 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                science: [
+                    { title: 'Новость из мира науки 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость из мира науки 2', description: 'Текст новости 2...', url: '#' }
+                ],
+                health: [
+                    { title: 'Новость о здоровье 1', description: 'Текст новости 1...', url: '#' },
+                    { title: 'Новость о здоровье 2', description: 'Текст новости 2...', url: '#' }
+                ],
+            };
+
+            const newsContainer = document.getElementById('news-container');
+            const selectedNews = newsData[category];
+
+            if (!selectedNews) {
+                newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
+                return;
+            }
+
+            let newsHTML = '';
+            selectedNews.forEach(newsItem => {
+                newsHTML += `
+                    <div class="w-100 card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="${newsItem.image}" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">${newsItem.title}</h5>
+                                    <p class="card-text">${newsItem.description}</p>
+                                    <p class="card-text"><small class="text-body-secondary">Повний текст знаходиться за <a
+                                            href="${newsItem.url}" class="link-underline-light">посиланням.</a></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            newsContainer.innerHTML = newsHTML;
+        }
+    </script>
 {% endblock %}
