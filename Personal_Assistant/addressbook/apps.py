@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
+
 class AddressbookConfig(AppConfig):
     """
     AppConfig class for the "addressbook" app.

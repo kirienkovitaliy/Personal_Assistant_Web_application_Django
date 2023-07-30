@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+
 class Tag(models.Model):
     """
     Model representing a Tag.
@@ -12,7 +13,9 @@ class Tag(models.Model):
     """
 
     name: str = models.CharField(max_length=100)
-    user: models.ForeignKey = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user: models.ForeignKey = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=1
+    )
 
     class Meta:
         constraints = [
@@ -39,8 +42,12 @@ class Note(models.Model):
 
     title: str = models.CharField(max_length=255)
     content: str = models.TextField(null=True, blank=True)
-    tags: models.ManyToManyField = models.ManyToManyField(Tag, related_name="notes", blank=True)
-    user: models.ForeignKey = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    tags: models.ManyToManyField = models.ManyToManyField(
+        Tag, related_name="notes", blank=True
+    )
+    user: models.ForeignKey = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=1
+    )
 
     def get_absolute_url(self):
         """

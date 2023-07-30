@@ -1,6 +1,7 @@
 from django import forms
 from .models import File
 
+
 class FileForm(forms.ModelForm):
     """
     Form for uploading a file.
@@ -10,6 +11,7 @@ class FileForm(forms.ModelForm):
     Attributes:
         file (forms.FileField): The file upload field.
     """
+
     file: forms.FileField = forms.FileField(
         widget=forms.FileInput(
             attrs={

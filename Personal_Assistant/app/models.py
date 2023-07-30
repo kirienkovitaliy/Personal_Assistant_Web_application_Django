@@ -3,7 +3,8 @@ from uuid import uuid4
 from django.contrib.auth.models import User
 from django.db import models
 
-def update_filename(instance: 'Picture', filename: str) -> str:
+
+def update_filename(instance: "Picture", filename: str) -> str:
     """
     Function to update the filename of an uploaded picture.
 

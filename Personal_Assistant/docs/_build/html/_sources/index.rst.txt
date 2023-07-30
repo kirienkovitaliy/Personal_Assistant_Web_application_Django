@@ -19,17 +19,17 @@ app
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.forms
+.. automodule:: app.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.models
+.. automodule:: app.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.views
+.. automodule:: app.views
    :members:
    :undoc-members:
    :show-inheritance:

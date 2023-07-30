@@ -15,6 +15,7 @@ class RegisterForm(UserCreationForm):
         password1 (CharField): Field for the user's password.
         password2 (CharField): Field to confirm the user's password.
     """
+
     username: CharField = CharField(
         max_length=100,
         required=True,
@@ -72,6 +73,7 @@ class LoginForm(AuthenticationForm):
         username (CharField): Field for the username.
         password (CharField): Field for the user's password.
     """
+
     username: CharField = CharField(
         max_length=100,
         required=True,

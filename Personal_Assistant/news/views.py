@@ -2,6 +2,7 @@ import requests
 from django.conf import settings
 from django.shortcuts import render
 
+
 def get_news_by_category(request, category):
     """
     View to get news by category from the GNews API.

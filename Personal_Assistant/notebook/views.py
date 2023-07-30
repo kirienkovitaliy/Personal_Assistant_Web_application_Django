@@ -16,6 +16,7 @@ from django.views.generic import (
 from .forms import NoteForm, TagForm
 from .models import Note
 
+
 class NoteHome(LoginRequiredMixin, ListView):
     """
     View to display a list of notes.
@@ -35,7 +36,9 @@ class NoteHome(LoginRequiredMixin, ListView):
         Returns:
             QuerySet[Any]: The queryset of notes filtered by tag or search query.
         """
-        object_list_prefetch: QuerySet[Any] = self.model.objects.filter(user=self.request.user)
+        object_list_prefetch: QuerySet[Any] = self.model.objects.filter(
+            user=self.request.user
+        )
         tag: str = self.request.GET.get("tag")
         q: str = self.request.GET.get("q")
         if tag:

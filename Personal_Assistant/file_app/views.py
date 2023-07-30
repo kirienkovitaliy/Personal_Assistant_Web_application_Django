@@ -189,5 +189,7 @@ def upload_file(request) -> Any:
             file.save()
             return redirect("file_app:files")
         else:
-            return render(request, "file_app/upload_file.html", context={"form": form_class})
+            return render(
+                request, "file_app/upload_file.html", context={"form": form_class}
+            )
     return render(request, "file_app/upload_file.html", context={"form": form_class})

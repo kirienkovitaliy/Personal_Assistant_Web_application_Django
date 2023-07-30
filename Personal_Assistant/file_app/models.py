@@ -13,6 +13,7 @@ class File(models.Model):
         category (models.CharField): The category of the file.
         created_at (models.DateTimeField): The timestamp when the file was created.
     """
+
     name: models.CharField = models.CharField(max_length=255)
     file: models.FileField = models.FileField()
     user: models.ForeignKey = models.ForeignKey(User, on_delete=models.CASCADE)
