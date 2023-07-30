@@ -1,0 +1,191 @@
+.. Personal Assistant Web Application documentation master file, created by
+   sphinx-quickstart on Sun Jul 30 13:41:34 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Personal Assistant Web Application's documentation!
+==============================================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+app
+========
+
+.. automodule:: app.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: app.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: app.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: app.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+addressbook
+============
+
+.. # automodule:: addressbook.management.commands.test_script
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: addressbook.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: addressbook.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: addressbook.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: addressbook.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+notebook
+==========
+
+.. automodule:: notebook.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: notebook.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: notebook.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: notebook.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+file_app
+=========
+
+.. automodule:: file_app.templatetags.get_download_url
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: file_app.utils.get_category
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: file_app.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: file_app.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: file_app.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: file_app.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+statistic_war
+=============
+
+.. automodule:: statistic_war.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: statistic_war.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+exchange_rate
+=============
+
+.. automodule:: exchange_rate.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: exchange_rate.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+news
+======
+
+.. automodule:: news.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: news.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+users
+================================
+
+.. automodule:: users.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: users.forms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. # automodule:: users.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

@@ -1,16 +1,25 @@
 from datetime import timedelta
-
 from django.core.management.base import BaseCommand
 from django.utils.timezone import now
-
+from typing import Any
 from addressbook.models import Contact
+from django.db.models import QuerySet
 
 
 class Command(BaseCommand):
     help = "My custom script to work with models"
 
-    def handle(self, *args, **kwargs):
-        # Your custom script logic here
+    def handle(self, *args: Any, **kwargs: Any) -> None:
+        """
+        Handle the custom command.
+
+        Parameters:
+            *args (Any): The command-line arguments passed to the script.
+            **kwargs (Any): The keyword arguments passed to the script.
+
+        Returns:
+            None
+        """
         contacts = Contact.objects.all()
         print(type(contacts))
         filtered_contacts = []
