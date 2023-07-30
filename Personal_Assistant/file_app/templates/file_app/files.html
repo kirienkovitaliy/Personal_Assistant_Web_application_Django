@@ -1,4 +1,4 @@
-{% extends 'app/base.html' %}
+{% extends "app/base.html" %}
 
 {% block content %}
     <style>
@@ -93,18 +93,15 @@
         width: 8px;
     }
 
-    /* Тонкий трек скроллбара */
     ::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    /* Изящный цвет для скроллбара */
     ::-webkit-scrollbar-thumb {
         background-color: #888;
         border-radius: 4px;
     }
 
-    /* При наведении на скроллбар */
     ::-webkit-scrollbar-thumb:hover {
         background-color: #555;
     }
@@ -152,7 +149,7 @@
         <div class="col-md-4 mb-4">
             <ol class="list-group">
                 <li class="list-group-item justify-content-between align-items-start">
-                    {% if file.category == 'image' %}
+                    {% if file.category == "image" %}
                         <img src="{{file.file.url}}" alt="{{ file.name }}" class="card-img-top">
                     {% else %}
                         <img src="/static/fone.jpg" alt="ico" class="card-img-top">

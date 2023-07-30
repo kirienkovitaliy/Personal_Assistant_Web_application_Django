@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('file_app', '0007_file_name'),
+        ("file_app", "0007_file_name"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='file',
-            name='category',
+            model_name="file",
+            name="category",
             field=models.CharField(),
             preserve_default=False,
         ),

@@ -1,4 +1,3 @@
-// Функция для выполнения AJAX-запроса к API и обновления данных на странице
 function updateCurrencyValues() {
   fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
     .then(response => response.json())
@@ -16,6 +15,5 @@ function updateCurrencyValues() {
     .catch(error => console.log(error));
 }
 
-// Обновляем значения курса валют при загрузке страницы и каждые 24 часа
 updateCurrencyValues();
 setInterval(updateCurrencyValues, 60000);

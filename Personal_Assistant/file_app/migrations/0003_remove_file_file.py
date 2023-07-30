@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('file_app', '0002_remove_file_user'),
+        ("file_app", "0002_remove_file_user"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='file',
-            name='file',
+            model_name="file",
+            name="file",
         ),
     ]

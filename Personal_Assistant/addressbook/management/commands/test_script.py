@@ -7,7 +7,7 @@ from addressbook.models import Contact
 
 
 class Command(BaseCommand):
-    help = 'My custom script to work with models'
+    help = "My custom script to work with models"
 
     def handle(self, *args, **kwargs):
         # Your custom script logic here
@@ -23,8 +23,8 @@ class Command(BaseCommand):
             birthday = obj.birthday.replace(year=start_date.year)
             if start_date <= birthday < end_date:
                 filtered_contacts.append(obj.pk)
-                print('in list')
-            print('-' * 50)
+                print("in list")
+            print("-" * 50)
         result = Contact.objects.filter(pk__in=filtered_contacts)
         for r in result:
             print(r.name, r.birthday)

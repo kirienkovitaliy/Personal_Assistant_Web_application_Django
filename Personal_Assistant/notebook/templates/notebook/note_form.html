@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% if object %}Edit note{% else %}Create note{% endif %}</title>
+</head>
+<body>
+    <h1>{% if object %}Edit note{% else %}Create note{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit">{% if object %}Update{% else %}Add{% endif %}</button>
+    </form>
+</body>
+</html>
