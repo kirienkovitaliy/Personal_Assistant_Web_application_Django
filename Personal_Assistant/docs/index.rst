@@ -19,17 +19,17 @@ App base
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.forms
+.. automodule:: app.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.models
+.. automodule:: app.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: app.views
+.. automodule:: app.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -38,7 +38,7 @@ App base
 Addressbook
 ============
 
-.. # automodule:: addressbook.management.commands.test_script
+.. automodule:: addressbook.management.commands.test_script
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,17 +48,17 @@ Addressbook
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: addressbook.forms
+.. automodule:: addressbook.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: addressbook.models
+.. automodule:: addressbook.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: addressbook.views
+.. automodule:: addressbook.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -72,17 +72,17 @@ Notebook
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: notebook.forms
+.. automodule:: notebook.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: notebook.models
+.. automodule:: notebook.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: notebook.views
+.. automodule:: notebook.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -106,17 +106,17 @@ App files
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: file_app.forms
+.. automodule:: file_app.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: file_app.models
+.. automodule:: file_app.models
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: file_app.views
+.. automodule:: file_app.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -158,7 +158,7 @@ News
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: news.views
+.. automodule:: news.views
    :members:
    :undoc-members:
    :show-inheritance:
@@ -172,12 +172,12 @@ Authorization and authentication
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: users.forms
+.. automodule:: users.forms
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. # automodule:: users.views
+.. automodule:: users.views
    :members:
    :undoc-members:
    :show-inheritance:

@@ -9,7 +9,8 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(".."))
+sys.path.append(os.path.abspath("../Personal_Assistant_Web_application_Django"))
+os.environ["DJANGO_SETTINGS_MODULE"] = "Personal_Assistant.settings"
 
 
 project = "Personal Assistant Web Application"
