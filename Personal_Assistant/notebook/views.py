@@ -105,6 +105,9 @@ class AddNote(LoginRequiredMixin, CreateView):
 
 
 class AddTag(LoginRequiredMixin, CreateView):
+    form_class = TagForm
+    template_name = "notebook/tag_form.html"
+    success_url = reverse_lazy("notebook:note_home")
     """
     View to create a new tag.
 

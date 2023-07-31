@@ -53,4 +53,4 @@ class Note(models.Model):
         """
         Get the URL for accessing the detail view of the note.
         """
-        return reverse("note_detail", kwargs={"pk": self.pk})
+        return reverse("notebook:note_detail", kwargs={"pk": self.pk})

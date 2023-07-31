@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import AddNote, ShowNote, AddTag, NoteHome, EditNote, DeleteNote
 
+app_name = "notebook"
 
 urlpatterns = [
     path("", NoteHome.as_view(), name="note_home"),
