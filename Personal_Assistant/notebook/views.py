@@ -168,6 +168,16 @@ class DeleteNote(LoginRequiredMixin, DeleteView):
     model: Note = Note
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        """
+        Handle HTTP POST request to delete a note.
+
+        Args:
+            request (HttpRequest): The HTTP POST request object.
+            args (Any): Variable length argument list.
+            kwargs (Any): Arbitrary keyword arguments.
+        Returns:
+            HttpResponse: The HTTP response with status code 204 (No Content).
+        """
         self.object: Note = self.get_object()
         self.object.delete()
         return HttpResponse(status=204)
