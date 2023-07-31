@@ -128,17 +128,6 @@ class DeleteContact(LoginRequiredMixin, DeleteView):
     model = Contact
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-        """
-        Delete the contact instance.
-
-        Args:
-            request (HttpRequest): The HTTP request.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            HttpResponse: The response after successful contact deletion.
-        """
         self.object = self.get_object()
         self.object.delete()
         return HttpResponse(status=204)

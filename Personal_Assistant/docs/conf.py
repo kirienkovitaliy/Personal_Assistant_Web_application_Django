@@ -5,32 +5,35 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-import sys
 import os
+import sys
+import django
 
-sys.path.append(os.path.abspath("../Personal_Assistant_Web_application_Django"))
+sys.path.append(
+    os.path.abspath(
+        "/Users/vitaliyk/Desktop/GOIT/Project/Personal_Assistant_Web_application_Django/Personal_Assistant"
+    )
+)
 os.environ["DJANGO_SETTINGS_MODULE"] = "Personal_Assistant.settings"
+django.setup()
 
-
-project = "Personal Assistant Web Application"
+project = "Personal assistant"
 copyright = (
     "2023, Vitalii Kiriienko, Constantine Zagorodnyi, Egor Shanin, Denys Kotsiuba"
 )
 author = "Vitalii Kiriienko, Constantine Zagorodnyi, Egor Shanin, Denys Kotsiuba"
+release = "1.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["sphinx.ext.autodoc"]
 
-
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "nature"
+html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]

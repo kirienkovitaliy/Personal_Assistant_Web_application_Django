@@ -1,15 +1,14 @@
-.. Personal Assistant Web Application documentation master file, created by
-   sphinx-quickstart on Sun Jul 30 13:41:34 2023.
+.. Personal assistant documentation master file, created by
+   sphinx-quickstart on Mon Jul 31 12:43:21 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Personal Assistant Web Application's documentation!
-==============================================================
+Welcome to Personal assistant's documentation!
+==============================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
 
 App base
 ==========

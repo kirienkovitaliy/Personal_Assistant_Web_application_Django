@@ -10,16 +10,6 @@ class Command(BaseCommand):
     help = "My custom script to work with models"
 
     def handle(self, *args: Any, **kwargs: Any) -> None:
-        """
-        Handle the custom command.
-
-        Parameters:
-            *args (Any): The command-line arguments passed to the script.
-            **kwargs (Any): The keyword arguments passed to the script.
-
-        Returns:
-            None
-        """
         contacts = Contact.objects.all()
         print(type(contacts))
         filtered_contacts = []
