@@ -9,11 +9,7 @@ import os
 import sys
 import django
 
-sys.path.append(
-    os.path.abspath(
-        "/Users/vitaliyk/Desktop/GOIT/Project/Personal_Assistant_Web_application_Django/Personal_Assistant"
-    )
-)
+sys.path.append(os.path.abspath(".."))
 os.environ["DJANGO_SETTINGS_MODULE"] = "Personal_Assistant.settings"
 django.setup()
 
