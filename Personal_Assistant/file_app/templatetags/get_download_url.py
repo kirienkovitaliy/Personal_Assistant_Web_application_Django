@@ -5,7 +5,16 @@ from django import template
 register = template.Library()
 
 
-def download_url(file_public_id):
+def download_url(file_public_id: str) -> str:
+    """
+    Generate a download URL for a file in Cloudinary.
+
+    Args:
+        file_public_id (str): The public ID of the file in Cloudinary.
+
+    Returns:
+        str: The download URL for the file.
+    """
     cloudinary.config(
         cloud_name="dpavzurzn",
         api_key="139162117698447",

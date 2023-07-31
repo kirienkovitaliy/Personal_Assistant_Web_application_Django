@@ -89,7 +89,16 @@ DOCUMENT_EXT = (
 )
 
 
-def get_category(filename: str):
+def get_category(filename: str) -> str:
+    """
+    Get the category of a file based on its extension.
+
+    Args:
+        filename (str): The name of the file including its extension.
+
+    Returns:
+        str: The category of the file ('image', 'audio', 'video', 'document', or 'other').
+    """
     ext = filename.rsplit(".")[-1]
 
     if ext in IMAGE_EXT:
