@@ -25,4 +25,4 @@ class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def get_absolute_url(self):
-        return reverse("note_detail", kwargs={"pk": self.pk})
+        return reverse("notebook:note_detail", kwargs={"pk": self.pk})

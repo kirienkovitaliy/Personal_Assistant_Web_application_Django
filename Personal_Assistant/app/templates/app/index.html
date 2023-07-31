@@ -2,143 +2,153 @@
 
 {% block nav %}
 <style>
-.currency2{
-    padding-top: 10px;
-    display: block;
-}
-.currency-container{
-    /*position: fixed;*/
-    top: -800px;
-    left: 1200px;
-}
+    .currency2 {
+        padding-top: 10px;
+        display: block;
+    }
 
- .parent {
-    position: relative;
-    width: 300px;
-    height: 300px; /* Добавьте желаемую высоту для контейнера .parent */
-    padding: 20px;
-    perspective: 1000px;
-  }
+    .currency-container {
+        /*position: fixed;*/
+        top: -800px;
+        left: 1200px;
+    }
 
-  .card {
-    position: absolute;
-    top: -80px;
-    right: 650px;
-    padding-top: -45px;
-    border-radius: 10px;
-    transform-style: preserve-3d;
-    background-image: radial-gradient(#ece70a 2px, transparent 2px), radial-gradient(#0c307e 2px, transparent 2px);
-    background-size: 23px 23px;
-    background-position: 0 0, 11px 11px;
-    background-color: #f0f0f0;
-    width: 146%;
-    transition: all 0.5s ease-in-out;
-  }
-.card:hover {
-  transform: rotate3d(0.5, 1, 0, 5deg);
-}
+    .parent {
+        position: relative;
+        width: 300px;
+        height: 300px; /* Добавьте желаемую высоту для контейнера .parent */
+        padding: 20px;
+        perspective: 1000px;
+    }
 
-.content-box {
-  background: linear-gradient(135deg, rgba(7, 39, 192, 100) 0%, rgb(252, 228, 3) 100%);
-  border-radius: 0px 100px 10px 10px;
-   /* border-right: 2px solid white; */
-  width: 90%;
-  box-shadow: rgba(142, 142, 142, 0.686) 0px 20px 50px -10px;
-  transition: all 0.5s ease-in-out;
-  padding: 60px 25px 25px 25px;
-  transform-style: preserve-3d;
-}
+    .card {
+        position: absolute;
+        top: -80px;
+        right: 650px;
+        padding-top: -45px;
+        border-radius: 10px;
+        transform-style: preserve-3d;
+        background-image: radial-gradient(#ece70a 2px, transparent 2px), radial-gradient(#0c307e 2px, transparent 2px);
+        background-size: 23px 23px;
+        background-position: 0 0, 11px 11px;
+        background-color: #f0f0f0;
+        width: 146%;
+        transition: all 0.5s ease-in-out;
+    }
 
-.content-box .card-title {
-  display: inline-block;
-  color: white;
-  font-size: 25px;
-  font-weight: 900;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 60px);
-}
+    .card:hover {
+        transform: rotate3d(0.5, 1, 0, 5deg);
+    }
 
-.content-box .card-title:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
+    .content-box {
+        background: linear-gradient(135deg, rgba(7, 39, 192, 100) 0%, rgb(252, 228, 3) 100%);
+        border-radius: 0px 100px 10px 10px;
+        /* border-right: 2px solid white; */
+        width: 90%;
+        box-shadow: rgba(142, 142, 142, 0.686) 0px 20px 50px -10px;
+        transition: all 0.5s ease-in-out;
+        padding: 60px 25px 25px 25px;
+        transform-style: preserve-3d;
+    }
 
-.content-box .card-content {
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #f2f2f2;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 30px);
-}
+    .content-box .card-title {
+        display: inline-block;
+        color: white;
+        font-size: 25px;
+        font-weight: 900;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 60px);
+    }
 
-.content-box .card-content:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
+    .content-box .card-title:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
 
-.content-box .see-more {
-  cursor: pointer;
-  margin-top: 1rem;
-  display: inline-block;
-  font-weight: 900;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #ededed;
-  border-left: 2px solid #ededed;
-  border-radius: 0 0 0 1rem;
-  background: linear-gradient(245deg, rgba(0, 251, 255, 0) 0%, rgba(0,168,255,1) 100%);
-  padding: 0.7rem;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 20px);
-}
+    .content-box .card-content {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #f2f2f2;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 30px);
+    }
 
-.content-box .see-more:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
+    .content-box .card-content:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
 
-table,
-td {
-    border: 2px solid #f1f1f1;
-}
+    .content-box .see-more {
+        cursor: pointer;
+        margin-top: 1rem;
+        display: inline-block;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #ededed;
+        border-left: 2px solid #ededed;
+        border-radius: 0 0 0 1rem;
+        background: linear-gradient(245deg, rgba(0, 251, 255, 0) 0%, rgba(0, 168, 255, 1) 100%);
+        padding: 0.7rem;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 20px);
+    }
 
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
-}
+    .content-box .see-more:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
 
-   .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    table,
+    td {
+        border: 2px solid #f1f1f1;
+    }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
+    thead,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+    table {
+        caption-side: bottom;
+        border-collapse: collapse;
+        margin-top: 90px;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 
 </style>
 {% if user.is_authenticated %}
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Choice news
+    <button class="btn btn-secondary dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+        Choice news
     </button>
     <div class="dropdown-content">
         <a href="{% url 'news:world_news' %}">World News</a>
@@ -152,111 +162,186 @@ tfoot {
     </div>
 </div>
 {% endif %}
- <div class="container">
+<div class="container">
     <div class="buttons">
-      {% if user.is_authenticated %}
-      <a href="{% url 'file_app:files' %}"><button class="signup-btn">Files</button></a>
-      <a href="/"><button class="signup-btn">Notes</button></a>
-      <a href="{% url 'addressbook:home' %}"><button class="signup-btn">Contacts</button></a>
-      <a href="{% url 'file_app:upload' %}"><button class="signup-btn">Upload</button></a>
-      <a href="{% url 'users:logout' %}"><button class="signup-btn">Logout</button></a>
-      {% else %}
-      <div class="col text-end currency-container">
-        {% for date, currencies in exchange_rates.items %}
-          {% for currency, rate in currencies.items %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'file_app:files' %}">
+            <button class="signup-btn">Files</button>
+        </a>
+        <a href="{% url 'notebook:note_home' %}">
+            <button class="signup-btn">Notes</button>
+        </a>
+        <a href="{% url 'addressbook:home' %}">
+            <button class="signup-btn">Contacts</button>
+        </a>
+        <a href="{% url 'file_app:upload' %}">
+            <button class="signup-btn">Upload</button>
+        </a>
+        <a href="{% url 'users:logout' %}">
+            <button class="signup-btn">Logout</button>
+        </a>
+        {% else %}
+        <div class="col text-end currency-container">
+            {% for date, currencies in exchange_rates.items %}
+            {% for currency, rate in currencies.items %}
             {% if currency == 'USD' %}
-              <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
+            <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
             {% elif currency == 'EUR' %}
-              <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
+            <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
             {% endif %}
-          {% endfor %}
-        {% endfor %}
-        <span class="currency2">₽: WTF?</span>
-          <table>
-              <thead>
-        <tr>
-            <th colspan="2">Втрати рф:</th>
-        </tr>
-    </thead>
-              <tbody>
-              {% for item in data %}
-                  {{ item.date | date:"d.m.Y" }}
+            {% endfor %}
+            {% endfor %}
+            <span class="currency2">₽: WTF?</span>
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2">Втрати рф:</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in data %}
+                {{ item.date | date:"d.m.Y" }}
 
-                       {% for title, quantity in item.items %}
-                  <tr>
-                      <td>{{ title }}:</td>
-                      <td>{{ quantity }}</td>
-                  </tr>
+                {% for title, quantity in item.items %}
+                <tr>
+                    <td>{{ title }}:</td>
+                    <td>{{ quantity }}</td>
+                </tr>
                 {% endfor %}
-              {% endfor %}
-              </tbody>
-          </table>
-      </div>
-      <a href="{% url 'users:login' %}"><button class="login-btn">Login</button></a>
-      <a href="{% url 'users:register' %}"><button class="signup-btn">SignUp</button></a>
-      {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="{% url 'users:login' %}">
+            <button class="login-btn">Login</button>
+        </a>
+        <a href="{% url 'users:register' %}">
+            <button class="signup-btn">SignUp</button>
+        </a>
+        {% endif %}
     </div>
- </div>
+</div>
 <script>
-        const newsForm = document.getElementById('news-form');
+    const newsForm = document.getElementById('news-form');
 
-        newsForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const selectedCategory = newsForm.category.value;
-            showNews(selectedCategory);
-        });
+    newsForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const selectedCategory = newsForm.category.value;
+        showNews(selectedCategory);
+    });
 
-        function showNews(category) {
-            // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
-            // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
-            // Замените этот код на реальный код для получения новостей с сервера.
+    function showNews(category) {
 
-            const newsData = {
-                world: [
-                    { title: 'Новость из мира 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                nation: [
-                    { title: 'Новость из страны 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из страны 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                business: [
-                    { title: 'Новость о бизнесе 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о бизнесе 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                technology: [
-                    { title: 'Новость о технологиях 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о технологиях 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                entertainment: [
-                    { title: 'Новость из мира развлечений 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира развлечений 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                sports: [
-                    { title: 'Новость о спорте 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о спорте 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                science: [
-                    { title: 'Новость из мира науки 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира науки 2', description: 'Текст новости 2...', url: '#' }
-                ],
-                health: [
-                    { title: 'Новость о здоровье 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о здоровье 2', description: 'Текст новости 2...', url: '#' }
-                ],
-            };
+        const newsData = {
+            world: [
+                {
+                    title: 'Новость из мира 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость из мира 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            nation: [
+                {
+                    title: 'Новость из страны 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость из страны 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            business: [
+                {
+                    title: 'Новость о бизнесе 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость о бизнесе 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            technology: [
+                {
+                    title: 'Новость о технологиях 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость о технологиях 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            entertainment: [
+                {
+                    title: 'Новость из мира развлечений 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость из мира развлечений 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            sports: [
+                {
+                    title: 'Новость о спорте 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость о спорте 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            science: [
+                {
+                    title: 'Новость из мира науки 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость из мира науки 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+            health: [
+                {
+                    title: 'Новость о здоровье 1',
+                    description: 'Текст новости 1...',
+                    url: '#'
+                },
+                {
+                    title: 'Новость о здоровье 2',
+                    description: 'Текст новости 2...',
+                    url: '#'
+                }
+            ],
+        };
 
-            const newsContainer = document.getElementById('news-container');
-            const selectedNews = newsData[category];
+        const newsContainer = document.getElementById('news-container');
+        const selectedNews = newsData[category];
 
-            if (!selectedNews) {
-                newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
-                return;
-            }
+        if (!selectedNews) {
+            newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
+            return;
+        }
 
-            let newsHTML = '';
-            selectedNews.forEach(newsItem => {
-                newsHTML += `
+        let newsHTML = '';
+        selectedNews.forEach(newsItem => {
+            newsHTML += `
                     <div class="w-100 card mb-3">
                         <div class="row g-0">
                             <div class="col-md-4">
@@ -273,9 +358,9 @@ tfoot {
                         </div>
                     </div>
                 `;
-            });
+        });
 
-            newsContainer.innerHTML = newsHTML;
-        }
-    </script>
+        newsContainer.innerHTML = newsHTML;
+    }
+</script>
 {% endblock %}

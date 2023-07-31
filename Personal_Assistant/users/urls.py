@@ -9,6 +9,7 @@ from django.urls import path
 
 from .forms import LoginForm
 from .views import RegisterView, ResetPasswordView
+from Personal_Assistant.settings import LOGOUT_REDIRECT_URL
 
 app_name = "users"
 
@@ -24,7 +25,7 @@ urlpatterns = [
         name="login",
     ),
     path(
-        "logout/", LogoutView.as_view(template_name="users/logout.html"), name="logout"
+        "logout/", LogoutView.as_view(template_name="users/logout.html"), {'next_page': LOGOUT_REDIRECT_URL}, name="logout"
     ),
     path("reset-password/", ResetPasswordView.as_view(), name="password_reset"),
     path(

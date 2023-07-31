@@ -4,7 +4,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
     }
 
@@ -86,7 +86,7 @@
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
             const dropdownContent = document.querySelector('#category-container');
-            dropdownContent.textContent = `Category ${lastPartOfURL}`;
+            dropdownContent.textContent = `${lastPartOfURL}`;
 
             const newsForm = document.getElementById('news-form');
 
@@ -101,10 +101,6 @@
 
 
             function showNews(category) {
-                // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
-                // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
-                // Замените этот код на реальный код для получения новостей с сервера.
-
                 const newsData = {
                     world: [
                         {

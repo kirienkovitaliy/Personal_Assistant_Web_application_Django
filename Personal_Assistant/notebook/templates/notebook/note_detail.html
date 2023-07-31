@@ -1,29 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Note detail</title>
-</head>
-<body>
-<main>
-    <nav style="margin-bottom: 20px; border-bottom: 2px sokid; padding-left: 30px;">
-        <ul>
-            <li><a href="{% url 'note_home' %}" role="button">Go back</a></li>
-        </ul>
-    </nav>
-</main>
-    <h1>Note detail</h1>
-    <h3>{{ object.title }}</h3>
-    <p>{{ object.content }}</p>
-    <div>
-        <!--Tags-->
-        <uL>
+{% extends "app/base.html" %}
+
+{% block content %}
+<style>
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Это позволит центрировать по вертикали */
+  }
+
+  .card-text-wrapper {
+    width: 17rem; /* Задаем фиксированную ширину для поля */
+    max-height: 300px; /* Задаем максимальную высоту для поля */
+    overflow: auto; /* Добавляем прокрутку, если текст превышает установленную высоту */
+    border: 1px solid #ccc; /* Опционально: добавляем границу для поля */
+    scrollbar-width: thin; /* Тонкий скроллбар (для Firefox) */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    background-color: #f0f0f0; /* Светло-серый цвет фона */
+  }
+
+  .card-text-wrapper::-webkit-scrollbar {
+    width: 6px; /* Ширина тонкого скроллбара */
+  }
+
+  .card-text-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Цвет скроллбара */
+    border-radius: 3px; /* Округление углов скроллбара */
+  }
+
+  .card-text-wrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+</style>
+
+<div class="card-container">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body" style="background-color: #f0f0f0;">
+      <h5 class="card-title">{{ object.title }}</h5>
+      <div class="tags">
         {% for tag in object.tags.all %}
-        <li>
-            <span>{{ tag }}</span>
-        </li>
+        <span>Tag: {{ tag }}</span>
         {% endfor %}
-        </uL>
+      </div>
+      <div class="card-text-wrapper">
+        <p class="card-text">{{ object.content }}</p>
+      </div>
+      <a href="{% url 'notebook:note_home' %}" class="card-link">Back</a>
     </div>
-</body>
-</html>
+  </div>
+</div>
+{% endblock %}
