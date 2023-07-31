@@ -7,7 +7,6 @@
     display: block;
 }
 .currency-container{
-    /*position: fixed;*/
     top: -800px;
     left: 1200px;
 }
@@ -15,7 +14,7 @@
  .parent {
     position: relative;
     width: 300px;
-    height: 300px; /* Добавьте желаемую высоту для контейнера .parent */
+    height: 300px;
     padding: 20px;
     perspective: 1000px;
   }
@@ -41,7 +40,6 @@
 .content-box {
   background: linear-gradient(135deg, rgba(7, 39, 192, 100) 0%, rgb(252, 228, 3) 100%);
   border-radius: 0px 100px 10px 10px;
-   /* border-right: 2px solid white; */
   width: 90%;
   box-shadow: rgba(142, 142, 142, 0.686) 0px 20px 50px -10px;
   transition: all 0.5s ease-in-out;
@@ -164,9 +162,9 @@ tfoot {
       <div class="col text-end currency-container">
         {% for date, currencies in exchange_rates.items %}
           {% for currency, rate in currencies.items %}
-            {% if currency == 'USD' %}
+            {% if currency == "USD" %}
               <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
-            {% elif currency == 'EUR' %}
+            {% elif currency == "EUR" %}
               <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
             {% endif %}
           {% endfor %}
@@ -198,63 +196,60 @@ tfoot {
     </div>
  </div>
 <script>
-        const newsForm = document.getElementById('news-form');
+        const newsForm = document.getElementById("news-form");
 
-        newsForm.addEventListener('submit', function (event) {
+        newsForm.addEventListener("submit", function (event) {
             event.preventDefault();
             const selectedCategory = newsForm.category.value;
             showNews(selectedCategory);
         });
 
         function showNews(category) {
-            // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
-            // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
-            // Замените этот код на реальный код для получения новостей с сервера.
 
             const newsData = {
                 world: [
-                    { title: 'Новость из мира 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина зі світу 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина зі світу 2", description: "Текст новини 2...", url: "#" }
                 ],
                 nation: [
-                    { title: 'Новость из страны 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из страны 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина з країни 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина з країни 2", description: "Текст новини 2...", url: "#" }
                 ],
                 business: [
-                    { title: 'Новость о бизнесе 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о бизнесе 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина про бізнес 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина про бізнес 2", description: "Текст новини 2...", url: "#" }
                 ],
                 technology: [
-                    { title: 'Новость о технологиях 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о технологиях 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина про технології 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина про технології 2", description: "Текст новини 2...", url: "#" }
                 ],
                 entertainment: [
-                    { title: 'Новость из мира развлечений 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира развлечений 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина зі світу розваг 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина зі світу розваг 2", description: "Текст новини 2...", url: "#" }
                 ],
                 sports: [
-                    { title: 'Новость о спорте 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о спорте 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина про спорт 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина про спорт 2", description: "Текст новини 2...", url: "#" }
                 ],
                 science: [
-                    { title: 'Новость из мира науки 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость из мира науки 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина зі світу науки 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина зі світу науки 2", description: "Текст новини 2...", url: "#" }
                 ],
                 health: [
-                    { title: 'Новость о здоровье 1', description: 'Текст новости 1...', url: '#' },
-                    { title: 'Новость о здоровье 2', description: 'Текст новости 2...', url: '#' }
+                    { title: "Новина про здоров'я 1", description: "Текст новини 1...", url: "#" },
+                    { title: "Новина про здоров'я 2", description: "Текст новини 2...", url: "#" }
                 ],
             };
 
-            const newsContainer = document.getElementById('news-container');
+            const newsContainer = document.getElementById("news-container");
             const selectedNews = newsData[category];
 
             if (!selectedNews) {
-                newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
+                newsContainer.innerHTML = "<p>Немає новин для обраної категорії.</p>";
                 return;
             }
 
-            let newsHTML = '';
+            let newsHTML = "";
             selectedNews.forEach(newsItem => {
                 newsHTML += `
                     <div class="w-100 card mb-3">

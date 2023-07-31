@@ -81,16 +81,16 @@
         <script>
             const currentURL = window.location.href;
 
-            const urlParts = currentURL.split('/');
+            const urlParts = currentURL.split("/");
 
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
-            const dropdownContent = document.querySelector('#category-container');
+            const dropdownContent = document.querySelector("#category-container");
             dropdownContent.textContent = `Category ${lastPartOfURL}`;
 
-            const newsForm = document.getElementById('news-form');
+            const newsForm = document.getElementById("news-form");
 
-            newsForm.addEventListener('submit', function (event) {
+            newsForm.addEventListener("submit", function (event) {
                 event.preventDefault();
                 const selectedCategory = newsForm.category.value;
                 showNews(selectedCategory);
@@ -101,118 +101,114 @@
 
 
             function showNews(category) {
-                // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
-                // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
-                // Замените этот код на реальный код для получения новостей с сервера.
-
                 const newsData = {
                     world: [
                         {
-                            title: 'Новость из мира 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина зі світу 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость из мира 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина зі світу 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     nation: [
                         {
-                            title: 'Новость из страны 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина з країни 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость из страны 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина з країни 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     business: [
                         {
-                            title: 'Новость о бизнесе 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина про бізнес 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость о бизнесе 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина про бізнес 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     technology: [
                         {
-                            title: 'Новость о технологиях 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина про технології 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость о технологиях 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина про технології 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     entertainment: [
                         {
-                            title: 'Новость из мира развлечений 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина зі світу розваг 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость из мира развлечений 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина зі світу розваг 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     sports: [
                         {
-                            title: 'Новость о спорте 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина про спорт 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость о спорте 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина про спорт 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     science: [
                         {
-                            title: 'Новость из мира науки 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина зі світу науки 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость из мира науки 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина зі світу науки 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                     health: [
                         {
-                            title: 'Новость о здоровье 1',
-                            description: 'Текст новости 1...',
-                            url: '#'
+                            title: "Новина про здоров'я 1",
+                            description: "Текст новини 1...",
+                            url: "#"
                         },
                         {
-                            title: 'Новость о здоровье 2',
-                            description: 'Текст новости 2...',
-                            url: '#'
+                            title: "Новина про здоров'я 2",
+                            description: "Текст новини 2...",
+                            url: "#"
                         }
                     ],
                 };
 
-                const newsContainer = document.getElementById('news-container');
+                const newsContainer = document.getElementById("news-container");
                 const selectedNews = newsData[category];
 
                 if (!selectedNews) {
-                    newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
+                    newsContainer.innerHTML = "<p>Немає новин для обраної категорії.</p>";
                     return;
                 }
 
-                let newsHTML = '';
+                let newsHTML = "";
                 selectedNews.forEach(newsItem => {
                     newsHTML += `
                     <div class="w-100 card mb-3">
@@ -235,6 +231,7 @@
                 newsContainer.innerHTML = newsHTML;
             }
         </script>
-</body>
-{% endblock %}
 
+</body>
+
+{% endblock %}
