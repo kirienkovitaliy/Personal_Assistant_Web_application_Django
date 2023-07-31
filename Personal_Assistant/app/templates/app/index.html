@@ -139,14 +139,14 @@ tfoot {
     Choice news
     </button>
     <div class="dropdown-content">
-        <a href="{% url 'news:world_news' %}">World News</a>
-        <a href="{% url 'news:nation_news' %}">Nation News</a>
-        <a href="{% url 'news:business_news' %}">Business News</a>
-        <a href="{% url 'news:technology_news' %}">Technology News</a>
-        <a href="{% url 'news:entertainment_news' %}">Entertainment News</a>
-        <a href="{% url 'news:sports_news' %}">Sports News</a>
-        <a href="{% url 'news:science_news' %}">Science News</a>
-        <a href="{% url 'news:health_news' %}">Health News</a>
+        <a href="{% url 'news:world' %}">World</a>
+        <a href="{% url 'news:nation' %}">Nation</a>
+        <a href="{% url 'news:business' %}">Business</a>
+        <a href="{% url 'news:technology' %}">Technology</a>
+        <a href="{% url 'news:entertainment' %}">Entertainment</a>
+        <a href="{% url 'news:sport' %}">Sport</a>
+        <a href="{% url 'news:science' %}">Science</a>
+        <a href="{% url 'news:health' %}">Health</a>
     </div>
 </div>
 {% endif %}
@@ -207,35 +207,35 @@ tfoot {
         function showNews(category) {
 
             const newsData = {
-                world: [
+                World: [
                     { title: "Новина зі світу 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина зі світу 2", description: "Текст новини 2...", url: "#" }
                 ],
-                nation: [
+                Nation: [
                     { title: "Новина з країни 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина з країни 2", description: "Текст новини 2...", url: "#" }
                 ],
-                business: [
+                Business: [
                     { title: "Новина про бізнес 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина про бізнес 2", description: "Текст новини 2...", url: "#" }
                 ],
-                technology: [
+                Technology: [
                     { title: "Новина про технології 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина про технології 2", description: "Текст новини 2...", url: "#" }
                 ],
-                entertainment: [
+                Entertainment: [
                     { title: "Новина зі світу розваг 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина зі світу розваг 2", description: "Текст новини 2...", url: "#" }
                 ],
-                sports: [
+                Sport: [
                     { title: "Новина про спорт 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина про спорт 2", description: "Текст новини 2...", url: "#" }
                 ],
-                science: [
+                Science: [
                     { title: "Новина зі світу науки 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина зі світу науки 2", description: "Текст новини 2...", url: "#" }
                 ],
-                health: [
+                Health: [
                     { title: "Новина про здоров'я 1", description: "Текст новини 1...", url: "#" },
                     { title: "Новина про здоров'я 2", description: "Текст новини 2...", url: "#" }
                 ],

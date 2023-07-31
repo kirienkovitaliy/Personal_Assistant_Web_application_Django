@@ -86,7 +86,7 @@
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
             const dropdownContent = document.querySelector("#category-container");
-            dropdownContent.textContent = `Category ${lastPartOfURL}`;
+            dropdownContent.textContent = `${lastPartOfURL}`;
 
             const newsForm = document.getElementById("news-form");
 
@@ -102,7 +102,7 @@
 
             function showNews(category) {
                 const newsData = {
-                    world: [
+                    World: [
                         {
                             title: "Новина зі світу 1",
                             description: "Текст новини 1...",
@@ -114,7 +114,7 @@
                             url: "#"
                         }
                     ],
-                    nation: [
+                    Nation: [
                         {
                             title: "Новина з країни 1",
                             description: "Текст новини 1...",
@@ -126,7 +126,7 @@
                             url: "#"
                         }
                     ],
-                    business: [
+                    Business: [
                         {
                             title: "Новина про бізнес 1",
                             description: "Текст новини 1...",
@@ -138,7 +138,7 @@
                             url: "#"
                         }
                     ],
-                    technology: [
+                    Technology: [
                         {
                             title: "Новина про технології 1",
                             description: "Текст новини 1...",
@@ -150,7 +150,7 @@
                             url: "#"
                         }
                     ],
-                    entertainment: [
+                    Entertainment: [
                         {
                             title: "Новина зі світу розваг 1",
                             description: "Текст новини 1...",
@@ -162,7 +162,7 @@
                             url: "#"
                         }
                     ],
-                    sports: [
+                    Sport: [
                         {
                             title: "Новина про спорт 1",
                             description: "Текст новини 1...",
@@ -174,7 +174,7 @@
                             url: "#"
                         }
                     ],
-                    science: [
+                    Science: [
                         {
                             title: "Новина зі світу науки 1",
                             description: "Текст новини 1...",
@@ -186,7 +186,7 @@
                             url: "#"
                         }
                     ],
-                    health: [
+                    Health: [
                         {
                             title: "Новина про здоров'я 1",
                             description: "Текст новини 1...",
