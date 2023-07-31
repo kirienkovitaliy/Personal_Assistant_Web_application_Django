@@ -1,37 +1,240 @@
-<!doctype html>
-<html lang="en">
+{% extends "app/base.html" %}
 
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="submit"] {
+        margin-top: 10px;
+    }
+
+    div.news-container {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    div.news-item {
+        margin-bottom: 10px;
+    }
+
+    div.news-item h2 {
+        margin-top: 0;
+    }
+</style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Personal Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <title>Personal News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+          crossorigin="anonymous">
 </head>
-
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    {% for elem in news %}
-    <div class="w-100 card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{elem.image}}" class="img-fluid rounded-start">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{elem.title}}</h5>
-                    <p class="card-text">{{elem.description}}</p>
-                    <p class="card-text"><small class="text-body-secondary">Повний текст знаходиться за <a
-                                href="{{elem.url}}"
-                                class="link-underline-light">посиланням.</a></small></p>
+<div class="category-container" style="color: #f1f1f1"><h1 id="category-container"></h1></div>
+<div class="container"
+     style="height: 800px; overflow-y: auto; width: 800px; padding-right: 24px; margin-left: 600px">
+    <div class="row">
+        {% for elem in news %}
+        <div class="w-100 card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{elem.image}}" class="img-fluid rounded-start">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{elem.title}}</h5>
+                        <p class="card-text">{{elem.description}}</p>
+                        <p class="card-text"><small
+                                class="text-body-secondary">Повний текст
+                            знаходиться за <a
+                                    href="{{elem.url}}"
+                                    class="link-underline-light">посиланням.</a></small>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endfor %}
-</body>
+        {% endfor %}
 
-</html>
+        <script>
+            const currentURL = window.location.href;
+
+            const urlParts = currentURL.split('/');
+
+            const lastPartOfURL = urlParts[urlParts.length - 2];
+
+            const dropdownContent = document.querySelector('#category-container');
+            dropdownContent.textContent = `Category ${lastPartOfURL}`;
+
+            const newsForm = document.getElementById('news-form');
+
+            newsForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const selectedCategory = newsForm.category.value;
+                showNews(selectedCategory);
+            });
+
+
+
+
+
+            function showNews(category) {
+                // Здесь можно выполнить запрос к серверу для получения новостей по выбранной категории.
+                // В этом примере просто добавим несколько фиктивных новостей для каждой категории.
+                // Замените этот код на реальный код для получения новостей с сервера.
+
+                const newsData = {
+                    world: [
+                        {
+                            title: 'Новость из мира 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость из мира 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    nation: [
+                        {
+                            title: 'Новость из страны 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость из страны 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    business: [
+                        {
+                            title: 'Новость о бизнесе 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость о бизнесе 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    technology: [
+                        {
+                            title: 'Новость о технологиях 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость о технологиях 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    entertainment: [
+                        {
+                            title: 'Новость из мира развлечений 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость из мира развлечений 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    sports: [
+                        {
+                            title: 'Новость о спорте 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость о спорте 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    science: [
+                        {
+                            title: 'Новость из мира науки 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость из мира науки 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                    health: [
+                        {
+                            title: 'Новость о здоровье 1',
+                            description: 'Текст новости 1...',
+                            url: '#'
+                        },
+                        {
+                            title: 'Новость о здоровье 2',
+                            description: 'Текст новости 2...',
+                            url: '#'
+                        }
+                    ],
+                };
+
+                const newsContainer = document.getElementById('news-container');
+                const selectedNews = newsData[category];
+
+                if (!selectedNews) {
+                    newsContainer.innerHTML = '<p>Нет новостей для выбранной категории.</p>';
+                    return;
+                }
+
+                let newsHTML = '';
+                selectedNews.forEach(newsItem => {
+                    newsHTML += `
+                    <div class="w-100 card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="${newsItem.image}" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">${newsItem.title}</h5>
+                                    <p class="card-text">${newsItem.description}</p>
+                                    <p class="card-text"><small class="text-body-secondary">Повний текст знаходиться за <a
+                                            href="${newsItem.url}" class="link-underline-light">посиланням.</a></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                });
+                newsContainer.innerHTML = newsHTML;
+            }
+        </script>
+</body>
+{% endblock %}
+

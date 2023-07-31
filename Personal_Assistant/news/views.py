@@ -8,6 +8,9 @@ def get_world_news(request):
         f"https://gnews.io/api/v4/top-headlines?country=ua&category=world&apikey={settings.GNEWS_API_KEY}&lang=uk"
     )
     news = response.json()
+    if news.get('errors'):
+        return render(request, "news/news.html",
+                      context={"news": []})
     return render(request, "news/news.html", context={"news": news["articles"]})
 
 
