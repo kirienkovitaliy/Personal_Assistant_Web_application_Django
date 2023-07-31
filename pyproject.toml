@@ -14,11 +14,13 @@ psycopg2-binary = "^2.9.6"
 django-cloudinary-storage = "^0.3.0"
 requests = "^2.31.0"
 beautifulsoup4 = "^4.12.2"
+sphinx-rtd-theme = "^1.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
-sphinx = "^7.1.1"
+sphinx = ">=1.6, <7"
+
 
 [build-system]
 requires = ["poetry-core"]

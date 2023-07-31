@@ -1,10 +1,18 @@
 from django import forms
-
 from .models import File
 
 
 class FileForm(forms.ModelForm):
-    file = forms.FileField(
+    """
+    Form for uploading a file.
+
+    This form is responsible for creating a file upload form field.
+
+    Attributes:
+        file (forms.FileField): The file upload field.
+    """
+
+    file: forms.FileField = forms.FileField(
         widget=forms.FileInput(
             attrs={
                 "class": "form-control",

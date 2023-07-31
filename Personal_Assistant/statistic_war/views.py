@@ -3,14 +3,21 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from typing import List, Dict, Union
 
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
-base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
+base_url: str = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
 
-def get_url():
+def get_url() -> List[str]:
+    """
+    Retrieves the URLs to scrape data from.
+
+    Returns:
+        List of URLs as strings.
+    """
     response = requests.get(base_url)
     soup = BeautifulSoup(response.text, "html.parser")
     content = soup.select("div[class=ajaxmonth] h4[class=normal] a")
@@ -21,7 +28,16 @@ def get_url():
     return [urls[0]]
 
 
-def spider(urls):
+def spider(urls: List[str]) -> List[Dict[str, Union[str, Dict[str, str]]]]:
+    """
+    Scrapes data from the given URLs.
+
+    Args:
+        urls: List of URLs as strings.
+
+    Returns:
+        List of dictionaries containing the scraped data.
+    """
     data = []
     rows_to_fetch = 1
 
@@ -62,13 +78,28 @@ def spider(urls):
 
 
 @require_http_methods(["GET"])
-def get_spider_data(request):
+def get_spider_data(request) -> render:
+    """
+    View function to handle HTTP GET requests and return the scraped data in the template.
+
+    Args:
+        request: HTTP request object.
+
+    Returns:
+        render: HTTP response containing the template with the data.
+    """
     urls_for_parser = get_url()
     result = spider(urls_for_parser)
     return render(request, "statistic_war/statistic_war.html", {"data": result})
 
 
-def get_data():
+def get_data() -> List[Dict[str, Union[str, Dict[str, str]]]]:
+    """
+    Convenience function to retrieve the scraped data.
+
+    Returns:
+        List of dictionaries containing the scraped data.
+    """
     urls_for_parser = get_url()
     result = spider(urls_for_parser)
     return result
