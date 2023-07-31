@@ -38,6 +38,8 @@
     div.news-item h2 {
         margin-top: 0;
     }
+
+
 </style>
 <head>
     <meta charset="utf-8">
@@ -85,7 +87,7 @@
 
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
-            const dropdownContent = document.querySelector('#category-container');
+            const dropdownContent = document.querySelector("#category-container");
             dropdownContent.textContent = `${lastPartOfURL}`;
 
             const newsForm = document.getElementById("news-form");
@@ -95,10 +97,6 @@
                 const selectedCategory = newsForm.category.value;
                 showNews(selectedCategory);
             });
-
-
-
-
 
             function showNews(category) {
                 const newsData = {
@@ -230,6 +228,8 @@
                 });
                 newsContainer.innerHTML = newsHTML;
             }
+
+
         </script>
 
 </body>

@@ -105,9 +105,6 @@ class AddNote(LoginRequiredMixin, CreateView):
 
 
 class AddTag(LoginRequiredMixin, CreateView):
-    form_class = TagForm
-    template_name = "notebook/tag_form.html"
-    success_url = reverse_lazy("notebook:note_home")
     """
     View to create a new tag.
 
@@ -119,7 +116,7 @@ class AddTag(LoginRequiredMixin, CreateView):
 
     form_class: TagForm = TagForm
     template_name: str = "notebook/tag_form.html"
-    success_url: str = reverse_lazy("note_home")
+    success_url: str = reverse_lazy("notebook:note_home")
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         """
