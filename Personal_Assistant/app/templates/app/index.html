@@ -140,7 +140,6 @@
         display: block;
     }
 
-
 </style>
 {% if user.is_authenticated %}
 <div class="dropdown">
@@ -197,11 +196,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for title, quantity in data.items %}
+                {% for item in data %}
+                {{ item.date | date:"d.m.Y" }}
+
+                {% for title, quantity in item.items %}
                 <tr>
                     <td>{{ title }}:</td>
                     <td>{{ quantity }}</td>
                 </tr>
+                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -231,11 +234,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for title, quantity in data.items %}
+                {% for item in data %}
+                {{ item.date | date:"d.m.Y" }}
+
+                {% for title, quantity in item.items %}
                 <tr>
                     <td>{{ title }}:</td>
                     <td>{{ quantity }}</td>
                 </tr>
+                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>
