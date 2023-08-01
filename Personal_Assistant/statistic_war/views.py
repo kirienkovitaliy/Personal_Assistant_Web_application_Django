@@ -10,6 +10,22 @@ from django.views.decorators.http import require_http_methods
 
 base_url: str = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
+CATEGORY = (
+    "Особовий склад",
+    "Танки",
+    "ББМ",
+    "Гармати",
+    "РСЗВ",
+    "Засоби ППО",
+    "Літаки",
+    "Гелікоптери",
+    "Автомобілі та автоцистерни",
+    "Кораблі (катери)",
+    "Крилаті ракети",
+    "БПЛА",
+    "Спеціальна техніка",
+)
+
 
 def get_url() -> List[str]:
     """
@@ -88,8 +104,7 @@ def get_spider_data(request) -> render:
     Returns:
         render: HTTP response containing the template with the data.
     """
-    urls_for_parser = get_url()
-    result = spider(urls_for_parser)
+    result = get_data()
     return render(request, "statistic_war/statistic_war.html", {"data": result})
 
 
@@ -100,6 +115,8 @@ def get_data() -> List[Dict[str, Union[str, Dict[str, str]]]]:
     Returns:
         List of dictionaries containing the scraped data.
     """
-    urls_for_parser = get_url()
-    result = spider(urls_for_parser)
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    response = requests.get(f"https://russianwarship.rip/api/v2/statistics/{current_date}")
+    data = response.json()["data"]["stats"]
+    result = {k: v for k, v in zip(CATEGORY, data.values())}
     return result
