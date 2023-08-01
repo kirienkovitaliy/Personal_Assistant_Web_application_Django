@@ -26,8 +26,3 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ["title", "content", "tags"]
-        
-    def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
-        super().__init__(*args, **kwargs)
-        self.fields['tags'].queryset = self.fields['tags'].queryset.filter(user=user)
