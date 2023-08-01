@@ -25,7 +25,10 @@ urlpatterns = [
         name="login",
     ),
     path(
-        "logout/", LogoutView.as_view(template_name="users/logout.html"), {'next_page': LOGOUT_REDIRECT_URL}, name="logout"
+        "logout/",
+        LogoutView.as_view(template_name="users/logout.html"),
+        {"next_page": LOGOUT_REDIRECT_URL},
+        name="logout",
     ),
     path("reset-password/", ResetPasswordView.as_view(), name="password_reset"),
     path(

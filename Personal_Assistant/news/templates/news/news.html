@@ -38,6 +38,7 @@
     div.news-item h2 {
         margin-top: 0;
     }
+
     .signup-btn {
     margin: 10px;
     padding: 10px 20px;
@@ -50,6 +51,7 @@
     margin-left: 930px;
     margin-top: -35px;
 }
+
 </style>
 <head>
     <meta charset="utf-8">
@@ -98,8 +100,10 @@
 
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
-            const dropdownContent = document.querySelector('#category-container');
+
+            const dropdownContent = document.querySelector("#category-container");
             dropdownContent.textContent = `News ${lastPartOfURL}`;
+
 
             const newsForm = document.getElementById("news-form");
 
@@ -240,6 +244,8 @@
                 });
                 newsContainer.innerHTML = newsHTML;
             }
+
+
         </script>
 
 </body>
