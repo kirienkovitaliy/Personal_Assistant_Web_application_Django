@@ -197,15 +197,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for item in data %}
-                {{ item.date | date:"d.m.Y" }}
-
-                {% for title, quantity in item.items %}
+                {% for title, quantity in data.items %}
                 <tr>
                     <td>{{ title }}:</td>
                     <td>{{ quantity }}</td>
                 </tr>
-                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -237,7 +233,6 @@
                 <tbody>
                 {% for item in data %}
                 {{ item.date | date:"d.m.Y" }}
-
                 {% for title, quantity in item.items %}
                 <tr>
                     <td>{{ title }}:</td>
