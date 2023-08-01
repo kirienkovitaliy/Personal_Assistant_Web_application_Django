@@ -168,7 +168,11 @@ class EditNote(LoginRequiredMixin, UpdateView):
         """
         pk: str = self.kwargs.get("pk")
         return get_object_or_404(Note, id=pk)
-
+    
+    def get_form_kwargs(self) -> Dict[str, Any]:
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 class DeleteNote(LoginRequiredMixin, DeleteView):
     """
