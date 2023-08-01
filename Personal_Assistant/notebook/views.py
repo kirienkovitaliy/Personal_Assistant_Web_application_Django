@@ -89,7 +89,20 @@ class AddNote(LoginRequiredMixin, CreateView):
 
     form_class: NoteForm = NoteForm
     template_name: str = "notebook/note_form.html"
-
+    
+    def get_form_kwargs(self) -> Dict[str, Any]:
+        """
+        Creates kwargs for form.
+        
+        Add to default kwargs user to filter tag choise field
+        
+        Returns:
+            Dict[str, Any]: Dict of kwargs for form.
+        """
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+    
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         """
         Handle form validation for creating a new note.
