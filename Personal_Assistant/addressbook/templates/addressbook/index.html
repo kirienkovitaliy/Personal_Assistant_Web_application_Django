@@ -224,7 +224,7 @@
     <form class="input-group">
         <input name="q" type="text" class="form-control" id="inputText" placeholder="Search for..." value="{{ request.GET.q }}">
         <button type="submit">Search</button>
-        <a href="{% url 'addressbook:home' %}"><button type="reset">Reset</button></a>
+        <a href="{% url 'addressbook:home' %}"><button type="button">Reset</button></a>
     </form>
     <div class="cards-container">
         {% for i in object_list %}
