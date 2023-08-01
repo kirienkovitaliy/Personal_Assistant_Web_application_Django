@@ -179,7 +179,6 @@
         <a href="{% url 'users:logout' %}">
             <button class="signup-btn">Logout</button>
         </a>
-        {% else %}
         <div class="col text-end currency-container">
             {% for date, currencies in exchange_rates.items %}
             {% for currency, rate in currencies.items %}
@@ -198,25 +197,49 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for item in data %}
-                {{ item.date | date:"d.m.Y" }}
-
-                {% for title, quantity in item.items %}
+                {% for title, quantity in data.items %}
                 <tr>
                     <td>{{ title }}:</td>
                     <td>{{ quantity }}</td>
                 </tr>
                 {% endfor %}
-                {% endfor %}
                 </tbody>
             </table>
         </div>
+        {% else %}
         <a href="{% url 'users:login' %}">
             <button class="login-btn">Login</button>
         </a>
         <a href="{% url 'users:register' %}">
             <button class="signup-btn">SignUp</button>
         </a>
+        <div class="col text-end currency-container">
+            {% for date, currencies in exchange_rates.items %}
+            {% for currency, rate in currencies.items %}
+            {% if currency == "USD" %}
+            <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% elif currency == "EUR" %}
+            <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            <span class="currency2">₽: WTF?</span>
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2">Втрати рф:</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for title, quantity in data.items %}
+                <tr>
+                    <td>{{ title }}:</td>
+                    <td>{{ quantity }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% endif %}
     </div>
 </div>
