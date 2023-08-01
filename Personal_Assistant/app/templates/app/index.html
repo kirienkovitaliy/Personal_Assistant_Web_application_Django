@@ -220,9 +220,9 @@
         <div class="col text-end currency-container">
             {% for date, currencies in exchange_rates.items %}
             {% for currency, rate in currencies.items %}
-            {% if currency == 'USD' %}
+            {% if currency == "USD" %}
             <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
-            {% elif currency == 'EUR' %}
+            {% elif currency == "EUR" %}
             <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
             {% endif %}
             {% endfor %}
