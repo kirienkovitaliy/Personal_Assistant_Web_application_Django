@@ -116,7 +116,9 @@ def get_data() -> List[Dict[str, Union[str, Dict[str, str]]]]:
         List of dictionaries containing the scraped data.
     """
     current_date = datetime.now().strftime("%Y-%m-%d")
-    response = requests.get(f"https://russianwarship.rip/api/v2/statistics/{current_date}")
+    response = requests.get(
+        f"https://russianwarship.rip/api/v2/statistics/{current_date}"
+    )
     data = response.json()["data"]["stats"]
     result = {k: v for k, v in zip(CATEGORY, data.values())}
     return result
