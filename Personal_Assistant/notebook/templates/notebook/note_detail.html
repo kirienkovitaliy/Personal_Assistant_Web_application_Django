@@ -6,12 +6,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh; /* Это позволит центрировать по вертикали */
+    height: 80vh;
+    width: 130vh;/* Это позволит центрировать по вертикали */
+  }
+
+  .card-body {
+    width: 52rem;
   }
 
   .card-text-wrapper {
-    width: 17rem; /* Задаем фиксированную ширину для поля */
-    max-height: 300px; /* Задаем максимальную высоту для поля */
+    width: 50rem; /* Задаем фиксированную ширину для поля */
+    max-height: 400px; /* Задаем максимальную высоту для поля */
     overflow: auto; /* Добавляем прокрутку, если текст превышает установленную высоту */
     border: 1px solid #ccc; /* Опционально: добавляем границу для поля */
     scrollbar-width: thin; /* Тонкий скроллбар (для Firefox) */

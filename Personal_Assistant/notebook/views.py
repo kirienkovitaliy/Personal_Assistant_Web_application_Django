@@ -117,10 +117,6 @@ class AddTag(LoginRequiredMixin, CreateView):
         success_url (str): The URL to redirect after successful tag creation.
     """
 
-    form_class: TagForm = TagForm
-    template_name: str = "notebook/tag_form.html"
-    success_url: str = reverse_lazy("note_home")
-
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         """
         Handle form validation for creating a new tag.
