@@ -21,16 +21,16 @@
     border: 1px solid #ccc; /* Опционально: добавляем границу для поля */
     scrollbar-width: thin; /* Тонкий скроллбар (для Firefox) */
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    background-color: #f0f0f0; /* Светло-серый цвет фона */
+    background-color: #f0f0f0;
   }
 
   .card-text-wrapper::-webkit-scrollbar {
-    width: 6px; /* Ширина тонкого скроллбара */
+    width: 6px;
   }
 
   .card-text-wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2); /* Цвет скроллбара */
-    border-radius: 3px; /* Округление углов скроллбара */
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
   }
 
   .card-text-wrapper::-webkit-scrollbar-track {
@@ -40,19 +40,19 @@
 </style>
 
 <div class="card-container">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body" style="background-color: #f0f0f0;">
-      <h5 class="card-title">{{ object.title }}</h5>
-      <div class="tags">
-        {% for tag in object.tags.all %}
-        <span>Tag: {{ tag }}</span>
-        {% endfor %}
-      </div>
-      <div class="card-text-wrapper">
-        <p class="card-text">{{ object.content }}</p>
-      </div>
-      <a href="{% url 'notebook:note_home' %}" class="card-link">Back</a>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body" style="background-color: #f0f0f0;">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <div class="tags">
+                {% for tag in object.tags.all %}
+                <span>Tag: {{ tag }}</span>
+                {% endfor %}
+            </div>
+            <div class="card-text-wrapper">
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+            <a href="{% url 'notebook:note_home' %}" class="card-link">Back</a>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

@@ -98,7 +98,7 @@
 
             const lastPartOfURL = urlParts[urlParts.length - 2];
 
-            const dropdownContent = document.querySelector('#category-container');
+            const dropdownContent = document.querySelector("#category-container");
             dropdownContent.textContent = `News ${lastPartOfURL}`;
 
             const newsForm = document.getElementById("news-form");
@@ -108,7 +108,6 @@
                 const selectedCategory = newsForm.category.value;
                 showNews(selectedCategory);
             });
-
 
             function showNews(category) {
                 const newsData = {
@@ -240,6 +239,8 @@
                 });
                 newsContainer.innerHTML = newsHTML;
             }
+
+
         </script>
 
 </body>

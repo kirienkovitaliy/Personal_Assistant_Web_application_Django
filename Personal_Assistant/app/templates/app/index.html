@@ -8,7 +8,6 @@
     }
 
     .currency-container {
-        /*position: fixed;*/
         top: -800px;
         left: 1200px;
     }
@@ -16,7 +15,7 @@
     .parent {
         position: relative;
         width: 300px;
-        height: 300px; /* Добавьте желаемую высоту для контейнера .parent */
+        height: 300px;
         padding: 20px;
         perspective: 1000px;
     }
@@ -43,7 +42,6 @@
     .content-box {
         background: linear-gradient(135deg, rgba(7, 39, 192, 100) 0%, rgb(252, 228, 3) 100%);
         border-radius: 0px 100px 10px 10px;
-        /* border-right: 2px solid white; */
         width: 90%;
         box-shadow: rgba(142, 142, 142, 0.686) 0px 20px 50px -10px;
         transition: all 0.5s ease-in-out;
@@ -151,14 +149,14 @@
         Choice news
     </button>
     <div class="dropdown-content">
-        <a href="{% url 'news:world_news' %}">World News</a>
-        <a href="{% url 'news:nation_news' %}">Nation News</a>
-        <a href="{% url 'news:business_news' %}">Business News</a>
-        <a href="{% url 'news:technology_news' %}">Technology News</a>
-        <a href="{% url 'news:entertainment_news' %}">Entertainment News</a>
-        <a href="{% url 'news:sports_news' %}">Sports News</a>
-        <a href="{% url 'news:science_news' %}">Science News</a>
-        <a href="{% url 'news:health_news' %}">Health News</a>
+        <a href="{% url 'news:world' %}">World</a>
+        <a href="{% url 'news:nation' %}">Nation</a>
+        <a href="{% url 'news:business' %}">Business</a>
+        <a href="{% url 'news:technology' %}">Technology</a>
+        <a href="{% url 'news:entertainment' %}">Entertainment</a>
+        <a href="{% url 'news:sport' %}">Sport</a>
+        <a href="{% url 'news:science' %}">Science</a>
+        <a href="{% url 'news:health' %}">Health</a>
     </div>
 </div>
 {% endif %}
@@ -183,9 +181,9 @@
         <div class="col text-end currency-container">
             {% for date, currencies in exchange_rates.items %}
             {% for currency, rate in currencies.items %}
-            {% if currency == 'USD' %}
+            {% if currency == "USD" %}
             <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
-            {% elif currency == 'EUR' %}
+            {% elif currency == "EUR" %}
             <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
             {% endif %}
             {% endfor %}
