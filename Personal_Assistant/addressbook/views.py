@@ -43,7 +43,10 @@ class ContactsHome(LoginRequiredMixin, ListView):
             for obj in object_list_prefetch:
                 if not obj.birthday:
                     continue
-                if end_date.year > start_date.year and obj.birthday.month < start_date.month:
+                if (
+                    end_date.year > start_date.year
+                    and obj.birthday.month < start_date.month
+                ):
                     birthday = obj.birthday.replace(year=end_date.year)
                 else:
                     birthday = obj.birthday.replace(year=start_date.year)
