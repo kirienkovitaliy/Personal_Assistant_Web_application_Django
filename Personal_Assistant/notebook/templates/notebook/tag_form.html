@@ -50,33 +50,71 @@
         background-color: #fff;
     }
 
-    .add-button {
-        --color: #560bad;
-        font-family: inherit;
+    .form-container {
+    max-width: 400px;
+    padding: 24px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: -158px;
+}
+
+    button {
+    --color: #560bad;
+    font-family: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 64px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: var(--color);
+}
+
+    .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
         display: flex;
-        justify-content: center;
         align-items: center;
-        width: 8em;
-        height: 2.6em;
-        line-height: 2.5em;
-        margin: 20px auto;
-        position: relative;
-        overflow: hidden;
-        border: 2px solid var(--color);
-        transition: color .5s;
-        z-index: 1;
-        font-size: 17px;
-        border-radius: 6px;
-        font-weight: bold;
-        color: var(--color);
-        cursor: pointer;
-        background-color: transparent;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+        right: 0.3em;
+        transition: all 0.3s;
     }
 
-    .add-button:hover {
-        background-color: var(--color);
-        color: #fff;
+    .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
     }
+
+    .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #7b52b9;
+    }
+
+    .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+    }
+
 
     .close-button {
         position: absolute;
@@ -99,7 +137,8 @@
 <div class="form-container">
     <form method="post">
         {% csrf_token %}
-        <a href="{% url 'notebook:note_home' %}" class="close-button">&times;</a>
+        <a href="{% url 'notebook:note_home' %}"
+           class="close-button">&times;</a>
         <h1>Create tag</h1>
         <div class="form-error">{{ form.non_field_errors }}</div>
         {% for f in form %}
@@ -107,9 +146,10 @@
         {{ f }}
         <div class="form-error">{{ f.errors }}</div>
         {% endfor %}
-        <div class="add-button">
-            <button type="submit">{% if object %}Update{% else %}Add{% endif %}</button>
-        </div>
+        <button class="c-button">
+            <span class="c-main"><span class="c-ico"><span class="c-blur"></span></span></span>{% if object %}Update{% else %}Add{% endif %}</span>
+        </button>
+
     </form>
 </div>
 </body>
