@@ -213,7 +213,8 @@
             })
             .then(response => {
                 if (response.status === 204) {
-                    location.reload(); // Refresh the page after successful deletion
+                    location.reload();
+                    location.reload();
                 } else {
                     alert("Failed to delete the object.");
                 }
