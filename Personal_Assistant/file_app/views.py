@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import requests
 
 from .forms import FileForm
@@ -21,7 +21,7 @@ def delete_file(request, id: int) -> Any:
     Returns:
         redirect: Redirects to the 'files' page after successful deletion.
     """
-    file = File.objects.get(id=id, user=request.user)
+    file = get_object_or_404(File, id=id, user=request.user)
     file.delete()
     return redirect("file_app:files")
 
@@ -38,16 +38,15 @@ def download_file(request, id: int) -> Any:
     Returns:
         HttpResponse: The file content as a downloadable attachment.
     """
-    file = File.objects.get(id=id, user=request.user)
+    file = get_object_or_404(File, id=id, user=request.user)
     file_url = file.file.url
     response = requests.get(file_url)
-
+    print(response.headers)
     if response.status_code == 200:
         file_content = response.content
         response = HttpResponse(
             file_content,
             headers={
-                "content_type": "application/octet-stream",
                 "Content-Disposition": f"attachment; filename={file.name}",
             },
         )
@@ -56,7 +55,7 @@ def download_file(request, id: int) -> Any:
 
 
 @login_required
-def get_audio_files(request) -> Any:
+def get_category_files(request, category) -> Any:
     """
     View function to get all audio files uploaded by the current user.
 
@@ -66,23 +65,9 @@ def get_audio_files(request) -> Any:
     Returns:
         render: Renders the 'files.html' template with the audio files as context data.
     """
-    files = File.objects.filter(category="audio", user=request.user)
+    files = File.objects.filter(category=category, user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
-
-@login_required
-def get_documents_files(request) -> Any:
-    """
-    View function to get all document files uploaded by the current user.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        render: Renders the 'files.html' template with the document files as context data.
-    """
-    files = File.objects.filter(category="document", user=request.user)
-    return render(request, "file_app/files.html", context={"files": files})
 
 
 @login_required
@@ -97,51 +82,6 @@ def get_files(request) -> Any:
         render: Renders the 'files.html' template with all files as context data.
     """
     files = File.objects.filter(user=request.user)
-    return render(request, "file_app/files.html", context={"files": files})
-
-
-@login_required
-def get_image_files(request) -> Any:
-    """
-    View function to get all image files uploaded by the current user.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        render: Renders the 'files.html' template with the image files as context data.
-    """
-    files = File.objects.filter(category="image", user=request.user)
-    return render(request, "file_app/files.html", context={"files": files})
-
-
-@login_required
-def get_other_files(request) -> Any:
-    """
-    View function to get all files with 'other' category uploaded by the current user.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        render: Renders the 'files.html' template with 'other' files as context data.
-    """
-    files = File.objects.filter(category="other", user=request.user)
-    return render(request, "file_app/files.html", context={"files": files})
-
-
-@login_required
-def get_video_files(request) -> Any:
-    """
-    View function to get all video files uploaded by the current user.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        render: Renders the 'files.html' template with the video files as context data.
-    """
-    files = File.objects.filter(category="video", user=request.user)
     return render(request, "file_app/files.html", context={"files": files})
 
 

@@ -2,7 +2,7 @@ import os
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from typing import Any, Dict
 from .forms import PictureForm
 from .models import Picture
@@ -85,7 +85,7 @@ def remove(request: HttpRequest, pic_id: int) -> HttpResponse:
     Returns:
         HttpResponse: The HTTP response object.
     """
-    picture = Picture.objects.filter(pk=pic_id, user=request.user)
+    picture = get_object_or_404(Picture, pk=pic_id, user=request.user)
     try:
         os.unlink(os.path.join(settings.MEDIA_ROOT, str(picture.first().path)))
     except OSError as e:
@@ -113,7 +113,7 @@ def edit(request: HttpRequest, pic_id: int) -> HttpResponse:
         )
         return redirect(to="app:pictures")
 
-    picture = Picture.objects.filter(pk=pic_id, user=request.user).first()
+    picture = get_object_or_404(Picture, pk=pic_id, user=request.user)
     return render(
         request,
         "app/edit.html",
