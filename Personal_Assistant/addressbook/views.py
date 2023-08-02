@@ -35,14 +35,18 @@ class ContactsHome(LoginRequiredMixin, ListView):
             QuerySet[Any]: The queryset of contacts based on the request parameters.
         """
         object_list_prefetch = self.model.objects.filter(user=self.request.user)
-        if self.request.GET.get("birthday_on_next_week") == "on":
+        date_range = self.request.GET.get("birthday_for_next_day")
+        if date_range:
             triggered_pk = []
+            start_date = now().date()
+            end_date = start_date + timedelta(days=int(date_range))
             for obj in object_list_prefetch:
-                start_date = now().date()
-                end_date = start_date + timedelta(days=7)
                 if not obj.birthday:
                     continue
-                birthday = obj.birthday.replace(year=start_date.year)
+                if end_date.year > start_date.year and obj.birthday.month < start_date.month:
+                    birthday = obj.birthday.replace(year=end_date.year)
+                else:
+                    birthday = obj.birthday.replace(year=start_date.year)
                 if start_date <= birthday < end_date:
                     triggered_pk.append(obj.pk)
 
