@@ -14,6 +14,16 @@ urlpatterns = [
     path("image/", views.get_category_files, {"category": "image"}, name="image"),
     path("audio/", views.get_category_files, {"category": "audio"}, name="audio"),
     path("video/", views.get_category_files, {"category": "video"}, name="video"),
-    path("documents/", views.get_category_files, {"category": "document"}, name="documents"),
-    path("other_files/", views.get_category_files, {"category": "other"}, name="other_files"),
+    path(
+        "documents/",
+        views.get_category_files,
+        {"category": "document"},
+        name="documents",
+    ),
+    path(
+        "other_files/",
+        views.get_category_files,
+        {"category": "other"},
+        name="other_files",
+    ),
 ]

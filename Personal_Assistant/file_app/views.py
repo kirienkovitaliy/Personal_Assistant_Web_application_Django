@@ -69,7 +69,6 @@ def get_category_files(request, category) -> Any:
     return render(request, "file_app/files.html", context={"files": files})
 
 
-
 @login_required
 def get_files(request) -> Any:
     """
