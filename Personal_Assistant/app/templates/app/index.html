@@ -1,21 +1,246 @@
 {% extends "app/base.html" %}
 
-{% block currency-container %}
-
-{% endblock %}
 {% block nav %}
- <div class="container">
-    <div class="buttons">
-      {% if user.is_authenticated %}
-      <a href="{% url 'app:pictures' %}"><button class="signup-btn">Files</button></a>
-      <a href="/"><button class="signup-btn">Notes</button></a>
-        <a href="/"><button class="signup-btn">Contacts</button></a>
-      <a href="{% url 'app:upload' %}"><button class="signup-btn">Upload</button></a>
-      <a href="{% url 'users:logout' %}"><button class="signup-btn">Logout</button></a>
-      {% else %}
-      <a href="{% url 'users:login' %}"><button class="login-btn">Login</button></a>
-      <a href="{% url 'users:register' %}"><button class="signup-btn">SignUp</button></a>
-      {% endif %}
+<style>
+    .currency2 {
+        padding-top: 10px;
+        display: block;
+    }
+
+    .currency-container {
+        top: -800px;
+        left: 1310px;
+    }
+
+    .parent {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        padding: 20px;
+        perspective: 1000px;
+    }
+
+    .card {
+        position: absolute;
+        top: -80px;
+        right: 650px;
+        padding-top: -45px;
+        border-radius: 10px;
+        transform-style: preserve-3d;
+        background-image: radial-gradient(#ece70a 2px, transparent 2px), radial-gradient(#0c307e 2px, transparent 2px);
+        background-size: 23px 23px;
+        background-position: 0 0, 11px 11px;
+        background-color: #f0f0f0;
+        width: 146%;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .card:hover {
+        transform: rotate3d(0.5, 1, 0, 5deg);
+    }
+
+    .content-box {
+        background: linear-gradient(135deg, rgba(7, 39, 192, 100) 0%, rgb(252, 228, 3) 100%);
+        border-radius: 0px 100px 10px 10px;
+        width: 90%;
+        box-shadow: rgba(142, 142, 142, 0.686) 0px 20px 50px -10px;
+        transition: all 0.5s ease-in-out;
+        padding: 60px 25px 25px 25px;
+        transform-style: preserve-3d;
+    }
+
+    .content-box .card-title {
+        display: inline-block;
+        color: white;
+        font-size: 25px;
+        font-weight: 900;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 60px);
+    }
+
+    .content-box .card-title:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
+
+    .content-box .card-content {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #f2f2f2;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 30px);
+    }
+
+    .content-box .card-content:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
+
+    .content-box .see-more {
+        cursor: pointer;
+        margin-top: 1rem;
+        display: inline-block;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #ededed;
+        border-left: 2px solid #ededed;
+        border-radius: 0 0 0 1rem;
+        background: linear-gradient(245deg, rgba(0, 251, 255, 0) 0%, rgba(0, 168, 255, 1) 100%);
+        padding: 0.7rem;
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(0px, 0px, 20px);
+    }
+
+    .content-box .see-more:hover {
+        transform: translate3d(0px, 0px, 50px);
+    }
+
+    table,
+    td {
+        border: 2px solid #f1f1f1;
+    }
+
+    thead,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+
+    table {
+        caption-side: bottom;
+        border-collapse: collapse;
+        margin-top: 30px;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+</style>
+{% if user.is_authenticated %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+        Choice news
+    </button>
+    <div class="dropdown-content">
+        <a href="{% url 'news:world' %}">World</a>
+        <a href="{% url 'news:nation' %}">Nation</a>
+        <a href="{% url 'news:business' %}">Business</a>
+        <a href="{% url 'news:technology' %}">Technology</a>
+        <a href="{% url 'news:entertainment' %}">Entertainment</a>
+        <a href="{% url 'news:sport' %}">Sport</a>
+        <a href="{% url 'news:science' %}">Science</a>
+        <a href="{% url 'news:health' %}">Health</a>
     </div>
- </div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="buttons">
+        {% if user.is_authenticated %}
+        <a href="{% url 'file_app:files' %}">
+            <button class="signup-btn">Files</button>
+        </a>
+        <a href="{% url 'notebook:note_home' %}">
+            <button class="signup-btn">Notes</button>
+        </a>
+        <a href="{% url 'addressbook:home' %}">
+            <button class="signup-btn">Contacts</button>
+        </a>
+        <a href="{% url 'file_app:upload' %}">
+            <button class="signup-btn">Upload</button>
+        </a>
+        <a href="{% url 'users:logout' %}">
+            <button class="signup-btn">Logout</button>
+        </a>
+        <div class="col text-end currency-container">
+            {% for date, currencies in exchange_rates.items %}
+            {% for currency, rate in currencies.items %}
+            {% if currency == "USD" %}
+            <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% elif currency == "EUR" %}
+            <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            <span class="currency2">₽: WTF?</span>
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2">Втрати рф:</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for title, quantity in data.items %}
+                <tr>
+                    <td>{{ title }}:</td>
+                    <td>{{ quantity }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <a href="{% url 'users:login' %}">
+            <button class="login-btn">Login</button>
+        </a>
+        <a href="{% url 'users:register' %}">
+            <button class="signup-btn">SignUp</button>
+        </a>
+        <div class="col text-end currency-container">
+            {% for date, currencies in exchange_rates.items %}
+            {% for currency, rate in currencies.items %}
+            {% if currency == "USD" %}
+            <span class="currency2">$: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% elif currency == "EUR" %}
+            <span class="currency2">€: {{ rate.purchase }} / {{ rate.sale }}</span>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            <span class="currency2">₽: WTF?</span>
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2">Втрати рф:</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for title, quantity in data.items %}
+                <tr>
+                    <td>{{ title }}:</td>
+                    <td>{{ quantity }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}

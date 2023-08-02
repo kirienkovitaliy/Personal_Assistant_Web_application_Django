@@ -1,19 +1,122 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{% if object %}Edit Object{% else %}Create Object{% endif %}</title>
-</head>
-<body>
-    <h1>{% if object %}Edit Object{% else %}Create Object{% endif %}</h1>
+{% extends "app/base.html" %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #555;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+    }
+
+    form {
+        width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #414040;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin-top: -32vh
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-error {
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+
+    p {
+        margin: 0;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        appearance: none;
+        background-color: #fff;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: -5px;
+    }
+
+    button[type="submit"] {
+        flex: 1;
+        margin-right: 5px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #8d8f98;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        transition: .3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #357db3;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        color: white;
+    }
+
+    .close-button:hover {
+        color: #ff0000;
+    }
+</style>
+<main>
     <form method="post">
+        <span class="close-button" onclick="window.location.href='{% url 'addressbook:home' %}'">&#x2716;</span>
+        <h1>{% if object %}Edit Contact{% else %}Create Contact{% endif %}</h1>
         {% csrf_token %}
         <div class="form-error">{{ form.non_field_errors }}</div>
         {% for f in form %}
         <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
         <div class="form-error">{{ f.errors }}</div>
         {% endfor %}
-        <button type="submit">{% if object %}Update{% else %}Add{% endif %}</button>
+        <div class="button-container">
+            <button type="submit">{% if object %}Update{% else %}Add{% endif %}</button>
+        </div>
     </form>
-</body>
-</html>
+</main>
+{% endblock %}

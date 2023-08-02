@@ -1,0 +1,58 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<style>
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 130vh;
+  }
+
+  .card-body {
+    width: 52rem;
+  }
+
+  .card-text-wrapper {
+    width: 50rem;
+    max-height: 400px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    background-color: #f0f0f0;
+  }
+
+  .card-text-wrapper::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .card-text-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  .card-text-wrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+</style>
+
+<div class="card-container">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body" style="background-color: #f0f0f0;">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <div class="tags">
+                {% for tag in object.tags.all %}
+                <span>Tag: {{ tag }}</span>
+                {% endfor %}
+            </div>
+            <div class="card-text-wrapper">
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+            <a href="{% url 'notebook:note_home' %}" class="card-link">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

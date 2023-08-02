@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Втрати російської армії в Україні</title>
+</head>
+<body>
+    <table>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.date | date:"d.m.Y" }}</td>
+            <td>
+                <ul>
+                    {% for title, quantity in item.items %}
+                    <li>{{ title }}: {{ quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

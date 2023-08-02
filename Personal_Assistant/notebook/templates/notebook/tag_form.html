@@ -1,0 +1,156 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<title>Create tag</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #9b9191;
+    }
+
+    .form-container {
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    h1 {
+        color: #560bad;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 3px solid #ccc;
+        border-radius: 8px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: #e2e2e2;
+        outline-offset: 3px;
+        transition: 0.25s;
+        outline: 2px solid #FEBF00;
+    }
+
+    input[type="text"]:focus {
+        outline-offset: 5px;
+        background-color: #fff;
+    }
+
+    .form-container {
+    max-width: 400px;
+    padding: 24px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: -158px;
+}
+
+    button {
+    --color: #560bad;
+    font-family: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 64px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: var(--color);
+}
+
+    .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+        right: 0.3em;
+        transition: all 0.3s;
+    }
+
+    .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
+    }
+
+    .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #7b52b9;
+    }
+
+    .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+    }
+
+
+    .close-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+
+
+</style>
+<body>
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'notebook:note_home' %}"
+           class="close-button">&times;</a>
+        <h1>Create tag</h1>
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <p><label for="{{ f.id_for_label }}">{{ f.label }}</label></p>
+        {{ f }}
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <button class="c-button">
+            <span class="c-main"><span class="c-ico"><span class="c-blur"></span></span></span>{% if object %}Update{% else %}Add{% endif %}</span>
+        </button>
+
+    </form>
+</div>
+</body>
+{% endblock %}

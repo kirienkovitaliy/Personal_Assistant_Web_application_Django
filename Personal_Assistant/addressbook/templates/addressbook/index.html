@@ -1,104 +1,317 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Main page</title>
-    <!--<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
-    <style>
-        .horizontal-list {
-            display: inline;
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .horizontal-list li {
-            display:inline;
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
-<main class="container">
-    <!--Add contact button-->
-    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
-        <ul>
-            <li><a href="{% url 'add_contact' %}" role="button">Add contact</a></li>
-        </ul>
-    </nav>
-    <h1>Main page</h1>
+{% extends "app/base.html" %}
 
-    <form>
-        <!--Search field-->
-        <div class="input-group mb-3">
-            <input name="q" type="text" class="form-control input-sm" placeholder="Search for..." value="{{ request.GET.q }}">
-            <button class="btn btn-secondary" title="Search" style="margin-left: 2px;">Search</button>
-            <a href="{% url 'home' %}" class="btn btn-dark" style="margin-left: 2px;" title="Refresh">Reset</a>
+{% block content %}
+
+<style>
+    button {
+        --color: #595555;
+
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #333;
+    }
+
+    main {
+        text-align: center;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(194, 14, 14, 0.23);
+        width: 90%;
+        max-width: 1100px;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    .search button[type="submit"] {
+        background-color: #555;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left: 10px;
+        transition: .9s ease;
+    }
+
+    .search button[type="submit"]:hover {
+        transform: scale(1.1);
+        background-color: #444;
+    }
+
+    .input-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .input-group input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        flex: 1;
+        max-width: 300px;
+    }
+
+    .input-group button[type="submit"],
+    .input-group button[type="reset"] {
+        background-color: #555;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left: 10px;
+        transition: .9s ease;
+    }
+
+    .input-group button[type="submit"]:hover,
+    .input-group button[type="reset"]:hover {
+        transform: scale(1.1);
+        background-color: #444;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .card .button-container {
+        display: block;
+        justify-content: center;
+    }
+
+    .card .button-container button {
+        width: 150px;
+        height: 25px;
+        margin: 0 auto 20px;
+        padding: 8px 25px;
+        border-radius: 8px;
+        border: none;
+        background: #cec7c7;
+        color: #050505;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+
+    }
+
+    .card {
+        width: 230px;
+        height: 350px;
+        background: #78757e;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .card span {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .card .job {
+        font-weight: 400;
+        font-size: 12px;
+        word-wrap: break-word;
+        max-height: 100px;
+
+    }
+
+    .card .scrollable::-webkit-scrollbar {
+        width: 3px;
+    }
+
+     .card .scrollable::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .card .scrollable::-webkit-scrollbar-thumb {
+        background-color: #888787;
+        border-radius: 10px;
+    }
+
+    .card .scrollable {
+        scrollbar-width: thin;
+        overflow: auto;
+    }
+
+    .card button {
+        padding: 8px 25px;
+        border-radius: 8px;
+        border: none;
+        margin-top: 13px;
+        background: #cec7c7;
+        color: #050505;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+    }
+
+    .card button:hover {
+        background: #333;
+    }
+    .add-contact-btn button {
+        margin: 15px auto;
+
+    }
+    .add-contact-btn {
+        margin-top: 20px;
+    }
+
+    .add-home-btn button {
+        margin: 15px auto;
+        position: absolute;
+        top: 8%;
+        right: 7%;
+
+    }
+    .signup-btn {
+
+        background-color: #797979;
+
+
+    .home-btn button {
+        background-color: #888787;
+        color: #050505;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s ease;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+    }
+
+    .home-btn button:hover {
+        background-color: #444444;
+    }
+
+</style>
+<main>
+    <nav>
+        <div class="add-contact-btn">
+            <a href="/">
+                <button class="signup-btn">Home</button>
+            </a>
+            <a href="{% url 'addressbook:add_contact' %}">
+                <button class="signup-btn">Add +</button>
+            </a>
         </div>
-        <!--Checkbox to get only users with birthay on next week-->
-        <label for="birthday-on-next-week">Birthday on next week only:</label>
-        <input type="checkbox" name="birthday_on_next_week" id="birthday-on-next-week">
-        <button type="submit">Submit</button>
-    </form>
+    </nav>
+    <h1 style="color: #020202;">Address Book</h1>
+    <form class="input-group">
 
-    <!--List of contacts-->
-    <div style="display: flex;">
-        <ul class="list-articles">
-            {% for i in object_list %}
-            <li>
-            <figure style="border-left: .25rem solid;">
-            <div style="margin-left: 20px;">
-                <H3>{{ i.name }}</H3>
-                <p>{{ i.phone_number }}</p>
-                <p>{{ i.email }}</p>
-                <p>{{ i.address }}</p>
-                <p>{{ i.birthday }}</p>
+    <label for="birthday-for-next-days" style="color: #171616; font-size: larger">Birthday for next</label>
+        <input type="number" name="birthday_for_next_day" id="birthday-for-next-days" style="margin: 10px" min="0" max="364" value="{{ request.GET.birthday_for_next_day }}">
+        <span style="color: #171616; font-size: larger">day only</span>
+        <button class="btn btn-secondary btn-sm" type="submit" style="margin: 10px; width: auto">Ok</button>
+    </form>
+    <form class="input-group">
+        <input name="q" type="text" class="form-control" id="inputText" placeholder="Search for..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+        <a href="{% url 'addressbook:home' %}"><button type="button">Reset</button></a>
+    </form>
+    <div class="cards-container">
+        {% for i in object_list %}
+            <div class="card">
+                <div class="card-border-top"></div>
+                <span style="font-size: 20px;">{{ i.name }}</span>
+                {% if i.phone_number %}
+                <p class="job" style="font-size: 15px;">{{ i.phone_number}}</p>
+                {% else %}
+                <p style="font-size: 15px;">Phone number is missing</p>
+                {% endif %}
+                {% if i.email %}
+                <p class="job" style="font-size: 15px;">{{ i.email }}</p>
+                {% else %}
+                <p>Email is missing</p>
+                {% endif %}
+                {% if i.address %}
+                <p class="job" style="font-size: 15px;">{{ i.address }}</p>
+                {% else %}
+                <p>Address is missing</p>
+                {% endif %}
+                {% if i.birthday %}
+                <p class="job" style="font-size: 15px;">{{ i.birthday }}</p>
+                {% else %}
+                <p>Birthday is not specified</p>
+                {% endif %}
+                <div class="button-container">
+                    <a href="{% url 'addressbook:edit_contact' i.pk %}" role="button"> <button>Edit</button></a>
+                    <a href="#" onclick="deleteObject('{{ i.pk }}')" role="button"><button>Delete</button></a>
+                </div>
             </div>
-            <a href="{% url 'edit_contact' i.pk %}" role="button">Edit</a>
-            <a href="#" onclick="deleteObject('{{ i.pk }}')" role="button">Delete</a>
-            </figure>
-            </li>
-            {% endfor %}
-        </ul>
+        {% endfor %}
     </div>
     <script>
         function deleteObject(pk) {
-            if (confirm('Are you sure you want to delete this object?')) {
-                // Perform deletion by making a POST request
+            if (confirm("Are you sure you want to delete this object?")) {
                 fetch(`/addressbook/delete/${pk}`, {
-                    method: 'POST',
-                    headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+                    method: "POST",
+                    headers: { "X-CSRFToken": "{{ csrf_token }}" }
                 })
                 .then(response => {
-                    // Check if deletion was successful (status code 204)
                     if (response.status === 204) {
-                        // Refresh the page to update the object list
                         location.reload();
                     } else {
-                        alert('Failed to delete the object.');
+                        alert("Failed to delete the object.");
                     }
                 })
                 .catch(error => {
-                    console.error('Error occurred while deleting the object:', error);
-                    alert('An error occurred while deleting the object.');
+                    console.error("Error occurred while deleting the object:", error);
+                    alert("An error occurred while deleting the object.");
                 });
             }
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
-        // Handle the checkbox change event
-        $('#birthday-on-next-week').change(function() {
-        const isChecked = $(this).prop('checked');
-        // Save the checkbox status to the local storage
-        localStorage.setItem('birthday_on_next_week', isChecked);
+        $(document).ready(function() {
+            const numberInput = $("#birthday-for-next-days");
+    
+            // Load the number input value from localStorage on page load
+            const savedValue = localStorage.getItem("birthday_for_next_day");
+            if (savedValue !== null) {
+                numberInput.val(savedValue);
+            }
+    
+            // Listen for the "change" event of the number input and save its value to localStorage
+            numberInput.change(function() {
+                const value = $(this).val();
+                localStorage.setItem("birthday_for_next_day", value);
+            });
         });
-
-        // Get the checkbox status from the local storage and set the checkbox accordingly
-        const isChecked = localStorage.getItem('birthday_on_next_week') === 'true';
-        $('#birthday-on-next-week').prop('checked', isChecked);
-    });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const jobElements = document.querySelectorAll(".card .job");
+            jobElements.forEach((element) => {
+                console.log(element.textContent.length);
+                if (element.textContent.length > 24) {
+                    element.classList.add("scrollable");
+                }
+            });
+        });
     </script>
 </main>
-</body>
-</html>
+{% endblock %}

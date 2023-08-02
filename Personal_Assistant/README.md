@@ -1,6 +1,8 @@
 # Personal Assistant Web Application
 
-![imgonline-com-ua-Resize-uSo5u154KYZgS.jpg](media%2Fuploads%2Fimgonline-com-ua-Resize-uSo5u154KYZgS.jpg)
+![logo_Readme.jpg](static%2Flogo_Readme.jpg)
+
+https://personal-assistant-vekd.fly.dev/
 
 Personal Assistant is a web application built on Django that provides users with a centralized platform to manage
 contacts, notes, cloud storage, and daily news summaries. The application incorporates authentication mechanisms to
